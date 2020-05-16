@@ -17,6 +17,7 @@ SOURCES += \
     c_main.cpp \
     c_mainwindow.cpp \
     c_qcustomplot.cpp \
+    c_stockchart.cpp \
     c_webscrapper.cpp
 
 HEADERS += \

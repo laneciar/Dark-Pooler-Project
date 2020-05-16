@@ -77,91 +77,119 @@ string WebScrapper::findRatioString(string html)
 
 void WebScrapper::fillData()
 {
-    // P/E Ratio
-    size_t indexpeRatio = html.find("P/E Ratio ");
-    peRatio = findRatioNum(html.substr(indexpeRatio, html.length() - indexpeRatio));
 
-    // P/CF Ratio
-    size_t indexpcfRatio = html.find("Price to Cash Flow Ratio");
-    pcfRatio = findRatioNum(html.substr(indexpcfRatio, html.length() - indexpcfRatio));
+    if(html.find("Quote Not Found page for WSJ Market Data"))
+    {
+         peRatio = 0;
+         pcfRatio = 0;
+         pbRatio = 0;
+         psRatio = 0;
+         qtrEpsEstimate = 0;
+         annEpsEst = 0;
+         qtrLastYear = 0;
+         annLastYear = 0;
+         totalCash = "";
+         totalDebt = "";
+         totalLiabilites = "";
+         bookValueTotal = 0;
+         totalDebtEquity = 0;
+         totalDebtCapital = 0;
+         totalDebtAssets = 0;
+         interestCoverage = 0;
+         lastReport = "";
+         nextReport = "";
+         fiscalEnd = "";
+    }
 
-    // P/S Ratio
-    size_t indexpsRatio = html.find("Price to Sales Ratio");
-    psRatio = findRatioNum(html.substr(indexpsRatio, html.length() - indexpsRatio));
+    else
+    {
+        // P/E Ratio
+        size_t indexpeRatio = html.find("P/E Ratio ");
+        peRatio = findRatioNum(html.substr(indexpeRatio, html.length() - indexpeRatio));
 
-    // P/B Ratio
-    size_t indexpbRatio = html.find("Price to Book Ratio");
-    pbRatio = findRatioNum(html.substr(indexpbRatio, html.length() - indexpbRatio));
+        // P/CF Ratio
+        size_t indexpcfRatio = html.find("Price to Cash Flow Ratio");
+        pcfRatio = findRatioNum(html.substr(indexpcfRatio, html.length() - indexpcfRatio));
 
-    //Next Quarter EPS Estimate
-    size_t indexqtrEpsEstimate = html.find("Qtr. EPS Est.");
-    qtrEpsEstimate = findRatioNum(html.substr(indexqtrEpsEstimate, html.length() - indexqtrEpsEstimate));
+        // P/S Ratio
+        size_t indexpsRatio = html.find("Price to Sales Ratio");
+        psRatio = findRatioNum(html.substr(indexpsRatio, html.length() - indexpsRatio));
 
-    //Annual Eps Estimate
-    size_t indexAnnEps = html.find("Ann. EPS Est.");
-    annEpsEst = findRatioNum(html.substr(indexAnnEps, html.length() - indexAnnEps));
+        // P/B Ratio
+        size_t indexpbRatio = html.find("Price to Book Ratio");
+        pbRatio = findRatioNum(html.substr(indexpbRatio, html.length() - indexpbRatio));
 
-    //Quarter EPS Estimate Last Year
-    size_t indexqtrLastYear = html.find("Qtr. Year Ago");
-    qtrLastYear = findRatioNum(html.substr(indexqtrLastYear, html.length() - indexqtrLastYear));
+        //Next Quarter EPS Estimate
+        size_t indexqtrEpsEstimate = html.find("Qtr. EPS Est.");
+        qtrEpsEstimate = findRatioNum(html.substr(indexqtrEpsEstimate, html.length() - indexqtrEpsEstimate));
 
-    //Annual Eps Last Year
-    size_t indexAnnLastYear = html.find("Ann. Year Ago");
-    annLastYear = findRatioNum(html.substr(indexAnnLastYear, html.length() - indexAnnLastYear));
+        //Annual Eps Estimate
+        size_t indexAnnEps = html.find("Ann. EPS Est.");
+        annEpsEst = findRatioNum(html.substr(indexAnnEps, html.length() - indexAnnEps));
 
-    //Total Cash
-    size_t indextotalCash = html.find("Cash &amp; Short-Term Investment");
-    string s_tCash = findRatioString(html.substr(indextotalCash, html.length() - indextotalCash));
-    totalCash = QString::fromStdString(s_tCash);
+        //Quarter EPS Estimate Last Year
+        size_t indexqtrLastYear = html.find("Qtr. Year Ago");
+        qtrLastYear = findRatioNum(html.substr(indexqtrLastYear, html.length() - indexqtrLastYear));
 
-    //Total Debt
-    size_t indextotalDebt = html.find("Total Debt<", 0, 11);
-    string s_tDebt = findRatioString(html.substr(indextotalDebt, html.length() - indextotalDebt));
-    totalDebt = QString::fromStdString(s_tDebt);
+        //Annual Eps Last Year
+        size_t indexAnnLastYear = html.find("Ann. Year Ago");
+        annLastYear = findRatioNum(html.substr(indexAnnLastYear, html.length() - indexAnnLastYear));
 
-    //Total Liabilities
-    size_t indextotalLiabilites = html.find("Total Liabilities");
-    string s_tLib = findRatioString(html.substr(indextotalLiabilites, html.length() - indextotalLiabilites));
-    totalLiabilites = QString::fromStdString(s_tLib);
+        //Total Cash
+        size_t indextotalCash = html.find("Cash &amp; Short-Term Investment");
+        string s_tCash = findRatioString(html.substr(indextotalCash, html.length() - indextotalCash));
+        totalCash = QString::fromStdString(s_tCash);
 
-    //Book Value
-    size_t indexBookValue = html.find("Book Value Per Share");
-    bookValueTotal = findRatioNum(html.substr(indexBookValue, html.length() - indexBookValue));
+        //Total Debt
+        size_t indextotalDebt = html.find("Total Debt<", 0, 11);
+        string s_tDebt = findRatioString(html.substr(indextotalDebt, html.length() - indextotalDebt));
+        totalDebt = QString::fromStdString(s_tDebt);
 
-    //Total Debt-Equity
-    size_t indextotalDebtEquity = html.find("Total Debt to Total Equity");
-    totalDebtEquity = findRatioNum(html.substr(indextotalDebtEquity, html.length() - indextotalDebtEquity));
+        //Total Liabilities
+        size_t indextotalLiabilites = html.find("Total Liabilities");
+        string s_tLib = findRatioString(html.substr(indextotalLiabilites, html.length() - indextotalLiabilites));
+        totalLiabilites = QString::fromStdString(s_tLib);
 
-    //Total Debt-Capital
-    size_t indextotalDebtCapital = html.find("Total Debt to Total Capital");
-    totalDebtCapital = findRatioNum(html.substr(indextotalDebtCapital, html.length() - indextotalDebtCapital));
+        //Book Value
+        size_t indexBookValue = html.find("Book Value Per Share");
+        bookValueTotal = findRatioNum(html.substr(indexBookValue, html.length() - indexBookValue));
 
-    //Total Debt-Assets
-    size_t indextotalDebtAssets = html.find("Total Debt to Total Assets");
-    totalDebtAssets = findRatioNum(html.substr(indextotalDebtAssets, html.length() - indextotalDebtAssets));
+        //Total Debt-Equity
+        size_t indextotalDebtEquity = html.find("Total Debt to Total Equity");
+        totalDebtEquity = findRatioNum(html.substr(indextotalDebtEquity, html.length() - indextotalDebtEquity));
 
-    //Interest Coverage
-    size_t indexinterestCoverage = html.find("Interest Coverage");
-    interestCoverage = findRatioNum(html.substr(indexinterestCoverage, html.length() - indexinterestCoverage));
+        //Total Debt-Capital
+        size_t indextotalDebtCapital = html.find("Total Debt to Total Capital");
+        totalDebtCapital = findRatioNum(html.substr(indextotalDebtCapital, html.length() - indextotalDebtCapital));
+
+        //Total Debt-Assets
+        size_t indextotalDebtAssets = html.find("Total Debt to Total Assets");
+        totalDebtAssets = findRatioNum(html.substr(indextotalDebtAssets, html.length() - indextotalDebtAssets));
+
+        //Interest Coverage
+        size_t indexinterestCoverage = html.find("Interest Coverage");
+        interestCoverage = findRatioNum(html.substr(indexinterestCoverage, html.length() - indexinterestCoverage));
 
 
-    //Current Date
+        //Current Date
 
 
-    //Last Report
-    size_t indexLastReport = html.find("Last Report") + 43;
-    string s_lastReport = html.substr(indexLastReport, 11);
-    lastReport = QString::fromStdString(s_lastReport);
+        //Last Report
+        size_t indexLastReport = html.find("Last Report") + 43;
+        string s_lastReport = html.substr(indexLastReport, 11);
+        lastReport = QString::fromStdString(s_lastReport);
 
-    //Next Report
-    size_t indexNextReport = html.find("Next Report") + 43;
-    string s_NextReport = html.substr(indexNextReport, 11);
-    nextReport = QString::fromStdString(s_NextReport);
+        //Next Report
+        size_t indexNextReport = html.find("Next Report") + 43;
+        string s_NextReport = html.substr(indexNextReport, 11);
+        nextReport = QString::fromStdString(s_NextReport);
 
-    //Fiscal Year End
-    size_t indexFiscalEnd = html.find("Fiscal Yr Ends") + 46;
-    string s_FiscalEnd = html.substr(indexFiscalEnd, 13);
-    fiscalEnd = QString::fromStdString(s_FiscalEnd);
+        //Fiscal Year End
+        size_t indexFiscalEnd = html.find("Fiscal Yr Ends") + 46;
+        string s_FiscalEnd = html.substr(indexFiscalEnd, 13);
+        fiscalEnd = QString::fromStdString(s_FiscalEnd);
+    }
+
 
 
 

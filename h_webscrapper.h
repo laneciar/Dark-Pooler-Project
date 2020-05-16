@@ -52,7 +52,6 @@ public:
 
     //Picks through the html to find the needed data.
     void fillData();
-
     double findRatioNum(string HTML);
     string findRatioString(string HTML);
 };

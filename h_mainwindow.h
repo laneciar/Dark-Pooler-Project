@@ -1,11 +1,20 @@
 #ifndef MainWindow_H
 #define MainWindow_H
 
+#include "ui_u_mainwindow.h"
+#include "h_stockchart.h"
+#include "curl/curl.h"
+#include "h_webcurl.h"
+#include "h_webscrapper.h"
+#include "h_iexdata.h"
+
+#include <QMessageBox>
+#include <string.h>
 #include <QMainWindow>
 #include <QDialog>
 #include <QMessageBox>
 #include <QStackedWidget>
-#include<QDateTime>
+#include <QDateTime>
 #include <QDate>
 #include <QTimer>
 #include <iostream>
@@ -14,12 +23,13 @@
 #include <algorithm>
 #include <string>
 #include <QMouseEvent>
-#include "ui_u_mainwindow.h"
 #include <QtCharts/QtCharts>
 #include <QJsonDocument>
 #include <cmath>
 
+
 using namespace  std;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -31,16 +41,40 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void assignStatistics();
+
+
+    //Line Graphs
+    void ytd_Line_Graph();
+    void oneMin_Line_Graph();
+    void fiveMin_Line_Graph();
+    void fifteenMin_Line_Graph();
+    void oneHour_Line_Graph();
+    void fiveHour_Line_Graph();
+    void oneDay_Line_Graph();
+    void oneMonth_Line_Graph();
+
+    //Candlestick Graphs
+    void ytd_Candle_Graph();
+    void oneMin_Candle_Graph();
+    void fiveMin_Candle_Graph();
+    void fifteenMin_Candle_Graph();
+    void oneHour_Candle_Graph();
+    void fiveHour_Candle_Graph();
+    void oneDay_Candle_Graph();
+    void oneMonth_Candle_Graph();
+
+
+
+
+
 public slots:
 
 signals:
-    void dataRead();
-
-protected:
-    void mousePressEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
-    void assignStatistics(QString symbol);
-    void ytdGraphLine(QString symbol);
 
 private slots:
 
@@ -54,22 +88,17 @@ private slots:
 
     void currentTime();
 
-    void on_lineChartButton_clicked();
 
 private:
     Ui::MainWindow *ui;
-
     QSizePolicy QSizePolicy;
+    QString symbolSearched;
+    QPoint startPos;
+    QTimer *timer;
     string pageAddress;
-    QString symbolSearched = "AAPL";
     string symbolSearchedStd;
     bool isMaximized = false;
-    int mouseClick_X;
-    int mouseClick_Y;
-
-    //Timer for clock
-    QTimer *timer;
-
+    bool isMousePressed;
 
 
 
