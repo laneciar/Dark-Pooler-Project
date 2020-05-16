@@ -78,7 +78,7 @@ string WebScrapper::findRatioString(string html)
 void WebScrapper::fillData()
 {
 
-    if(html.find("Quote Not Found page for WSJ Market Data"))
+    if(html.find("Quote Not Found page for WSJ Market Data") != string::npos)
     {
          peRatio = 0;
          pcfRatio = 0;
@@ -105,6 +105,7 @@ void WebScrapper::fillData()
     {
         // P/E Ratio
         size_t indexpeRatio = html.find("P/E Ratio ");
+        cout << indexpeRatio;
         peRatio = findRatioNum(html.substr(indexpeRatio, html.length() - indexpeRatio));
 
         // P/CF Ratio

@@ -12,6 +12,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//Main Program UI Setup
 void MainWindow::setup()
 {
     //Clock Setup
