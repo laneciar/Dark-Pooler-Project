@@ -3,5 +3,5 @@
 
 # Dark Pooler
 
-Description for my awesome project
+First project that deals with SSE, REST API, and Web Scrapping to grab stock data
 </td></tr></table>
