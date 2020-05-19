@@ -24,8 +24,6 @@ Login::~Login()
     delete login;
 }
 
-
-
 //Checks if EULA box is checked on.
 void Login::on_loginCheckBox_toggled(bool checked)
 {

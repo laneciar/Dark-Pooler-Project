@@ -3,8 +3,6 @@
 
 
 #include <json/json.h>
-#include <json/reader.h>
-#include <json/value.h>
 #include <curl/curl.h>
 #include <locale> //locale, isdigit
 #include <string>

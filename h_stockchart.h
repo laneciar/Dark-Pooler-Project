@@ -2,6 +2,7 @@
 #define STOCKCHART_H
 
 #include <QWidget>
+#include <h_qcustomplot.h>
 
 class StockChart : public QWidget
 {
@@ -9,7 +10,6 @@ class StockChart : public QWidget
 public:
     explicit StockChart(QWidget *parent = nullptr);
 
-signals:
 
 };
 

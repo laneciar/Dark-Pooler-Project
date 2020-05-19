@@ -46,7 +46,6 @@ win32: LIBS += -L$$PWD/../Libraries/vcpkg/installed/libcurl/lib/ -llibcurl
 INCLUDEPATH += $$PWD/../Libraries/vcpkg/installed/libcurl/include
 DEPENDPATH += $$PWD/../Libraries/vcpkg/installed/libcurl/include
 
-
-win32: LIBS += -L$$PWD/../Libraries/vcpkg/installed/x64-windows/lib/ -ljsoncpp
-INCLUDEPATH += $$PWD/../Libraries/vcpkg/installed/x64-windows/include
-DEPENDPATH += $$PWD/../Libraries/vcpkg/installed/x64-windows/include
+win32: LIBS += -L$$PWD/../Libraries/jsoncpp/lib/ -ljsoncpp
+INCLUDEPATH += $$PWD/../Libraries/jsoncpp/
+DEPENDPATH += $$PWD/../Libraries/jsoncpp/

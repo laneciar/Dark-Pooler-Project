@@ -306,6 +306,8 @@ enum SelectionType { stNone                ///< The plottable is not selectable
   is \e nan or \e +/-inf). This function is used to check data validity upon replots, when the
   compiler flag \c QCUSTOMPLOT_CHECK_DATA is set.
 */
+
+
 inline bool isInvalidData(double value)
 {
   return qIsNaN(value) || qIsInf(value);
@@ -6667,6 +6669,7 @@ protected:
 Q_DECLARE_METATYPE(QCPItemBracket::BracketStyle)
 
 /* end of 'src/items/item-bracket.h' */
+
 
 
 #endif // QCUSTOMPLOT_H

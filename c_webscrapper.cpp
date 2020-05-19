@@ -105,7 +105,6 @@ void WebScrapper::fillData()
     {
         // P/E Ratio
         size_t indexpeRatio = html.find("P/E Ratio ");
-        cout << indexpeRatio;
         peRatio = findRatioNum(html.substr(indexpeRatio, html.length() - indexpeRatio));
 
         // P/CF Ratio

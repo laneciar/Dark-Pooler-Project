@@ -27,7 +27,6 @@
 #include <QJsonDocument>
 #include <cmath>
 
-
 using namespace  std;
 
 QT_BEGIN_NAMESPACE
@@ -85,9 +84,18 @@ private slots:
 
     void on_exitButton_clicked();
 
+    void currentTime();
+
+
     void on_symbolSearch_returnPressed();
 
-    void currentTime();
+    void clearChart();
+
+    void stockData(double num1, double num2);
+
+    void on_candleStickButton_clicked();
+
+    void on_lineChartButton_clicked();
 
 
 private:
@@ -96,10 +104,12 @@ private:
     QString symbolSearched;
     QPoint startPos;
     QTimer *timer;
+    QCPFinancial *candlesticks;
     string pageAddress;
     string symbolSearchedStd;
     bool isMaximized = false;
     bool isMousePressed;
+    bool isLineChart = true, isCandlestickChart = false;
 
 
 
