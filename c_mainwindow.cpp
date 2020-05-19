@@ -118,9 +118,7 @@ void MainWindow::on_symbolSearch_returnPressed()
 
     else
     {
-
         assignStatistics();
-
 
         if(isLineChart == true)
             ytd_Line_Graph();
@@ -153,8 +151,9 @@ void MainWindow::assignStatistics()
 {
 
     pageAddress = "https://www.wsj.com/market-data/quotes/" + symbolSearchedStd + "/financials";
+    cout << pageAddress << endl;
     CurlObj webPage(pageAddress);
-
+    cout << "after curl" << endl;
     WebScrapper web = WebScrapper(symbolSearchedStd, webPage.getData());
 
     ui->peRatio->setNum(web.peRatio);
@@ -210,6 +209,7 @@ void MainWindow::on_candleStickButton_clicked()
     clearChart();
     ytd_Candle_Graph();
     isCandlestickChart = true;
+    isLineChart = false;
 }
 
 //User selects line chart
@@ -218,6 +218,7 @@ void MainWindow::on_lineChartButton_clicked()
     clearChart();
     ytd_Line_Graph();
     isLineChart = true;
+    isCandlestickChart = false;
 }
 
 

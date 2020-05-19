@@ -49,11 +49,14 @@ public:
     //HTML The html to pull info from.
     WebScrapper (string NAME, string HTML);
 
-
-    //Picks through the html to find the needed data.
+    //Fills data from parser
     void fillData();
-    double findRatioNum(string HTML);
-    string findRatioString(string HTML);
+
+    //Finds value if its needed to be an int/double
+    double findNum(string HTML);
+
+    //Finds value if its needed to be a string
+    string findString(string HTML);
 };
 
 #endif // WEBSCRAPPER_H
