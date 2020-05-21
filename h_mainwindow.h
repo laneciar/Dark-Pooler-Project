@@ -46,7 +46,8 @@ public:
     void mouseReleaseEvent(QMouseEvent *event);
     void setup();
     void assignStatistics();
-
+    void clearChart();
+    void stockData(double num1, double num2);
 
     //Line Graphs
     void ytd_Line_Graph();
@@ -73,6 +74,7 @@ public:
 
 
 public slots:
+    void readData();
 
 signals:
     void processingDone();
@@ -87,26 +89,24 @@ private slots:
 
     void currentTime();
 
-
     void on_symbolSearch_returnPressed();
 
-    void clearChart();
-
-    void stockData(double num1, double num2);
-
     void on_chartStlyeBox_currentIndexChanged(int index);
+
+
 
 private:
     Ui::MainWindow *ui;
     QSizePolicy QSizePolicy;
     QString symbolSearched;
     QPoint startPos;
-    QTimer *timer;
+    QTimer *timer, dataTimer;
     QCPFinancial *candlesticks;
     string pageAddress;
     string symbolSearchedStd;
     bool isMaximized = false;
     bool isMousePressed;
+    int counter = 0;
     bool isLineChart = true, isCandlestickChart = false;
 
 

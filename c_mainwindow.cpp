@@ -26,11 +26,11 @@ void MainWindow::setup()
     QString date = QDate::currentDate().toString(format);
     ui->currentDate->setText(date);
 
-    symbolSearched = "SPY";
-    symbolSearchedStd = "SPY";
+    symbolSearched = "TWTR";
+    symbolSearchedStd = "TWTR";
 
     assignStatistics();
-    ytd_Line_Graph();
+    oneMin_Line_Graph();
 
     //Creates Background
     QLinearGradient plotGradient;
@@ -145,6 +145,26 @@ void MainWindow::on_symbolSearch_returnPressed()
     }
 }
 
+//Choses chart style from combo box
+void MainWindow::on_chartStlyeBox_currentIndexChanged(int index)
+{
+    if(index == 0)
+    {
+        clearChart();
+        ytd_Line_Graph();
+        isLineChart = true;
+        isCandlestickChart = false;
+    }
+
+    else if(index == 1)
+    {
+        clearChart();
+        ytd_Candle_Graph();
+        isCandlestickChart = true;
+        isLineChart = false;
+    }
+}
+
 //Clears chart when new chart is selected
 void MainWindow::clearChart()
 {
@@ -199,53 +219,42 @@ void MainWindow::stockData(double num1, double num2)
     ui->stockName->setText(symbolSearched);
     ui->stockPrice->setText('$' + QString::number(num1));
 
-    double closePriceChange = num1 - num2;
-    QString closePriceChangeStr = QString::number(closePriceChange);
+    double quotePriceChange = num1 - num2;
+    QString quotePriceChangeStr = QString::number(quotePriceChange);
 
     //Daily change of price is below 0
-    if (closePriceChange < 0)
+    if (quotePriceChange < 0)
     {
-        ui->stockPriceChange->setText("($"+closePriceChangeStr+')');
+        ui->stockPriceChange->setText("($"+quotePriceChangeStr+')');
         ui->stockPriceChange->setStyleSheet("color:rgb(255, 0, 0)");
     }
 
     //Daily change of price is above 0.
-    else if(closePriceChange > 0)
+    else if(quotePriceChange > 0)
     {
-        ui->stockPriceChange->setText("($"+closePriceChangeStr+')');
+        ui->stockPriceChange->setText("($"+quotePriceChangeStr+')');
         ui->stockPriceChange->setStyleSheet("color:rgb(0, 170, 0)");
     }
 }
 
-//Choses chart style from combo box
-void MainWindow::on_chartStlyeBox_currentIndexChanged(int index)
+void MainWindow::readData()
 {
-    if(index == 0)
-    {
-        clearChart();
-        ytd_Line_Graph();
-        isLineChart = true;
-        isCandlestickChart = false;
-    }
-
-    else if(index == 1)
-    {
-        clearChart();
-        ytd_Candle_Graph();
-        isCandlestickChart = true;
-        isLineChart = false;
-    }
+    Json::Value chartData = IEX::stocks::Quote(symbolSearchedStd);
+    counter = counter + 1;
+    ui->stockGraph->graph(0)->addData(counter, chartData["latestPrice"].asDouble());
+    ui->stockGraph->xAxis->setRange(counter, 8, Qt::AlignRight);
+    ui->stockGraph->yAxis->setRange(25, 45);
+    ui->stockGraph->replot();
 }
 
-
-//Shows year-to-date graph of specific company
+//Shows year-to-date line graph
 void MainWindow::ytd_Line_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartYtd(symbolSearchedStd);
 
     //Stores x and y values
-    QVector<double> closePrice(365), timeInEpoch(365);
+    QVector<double> quotePrice(365), timeInEpoch(365);
     QVector<string>time(365);
 
     int  n = chartData.size();
@@ -304,32 +313,32 @@ void MainWindow::ytd_Line_Graph()
     {
         if(chartData[i].isMember("close"))
         {
-            closePrice[i] = (chartData[i]["close"].asDouble());
+            quotePrice[i] = (chartData[i]["close"].asDouble());
             time[i] = chartData[i]["date"].asString();
             QString temp = QString::fromStdString(time[i]);
             timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
 
-            if((closePrice[i] == 0) && (i != chartData.size() - 1))
+            if((quotePrice[i] == 0) && (i != chartData.size() - 1))
             {
-                closePrice[i] = closePrice[i-1];
+                quotePrice[i] = quotePrice[i-1];
             }
 
-            if(closePrice[i] > maxAvg)
+            if(quotePrice[i] > maxAvg)
             {
-                maxAvg = closePrice[i];
+                maxAvg = quotePrice[i];
             }
 
-            else if(closePrice[i] < minAvg)
+            else if(quotePrice[i] < minAvg)
             {
-                minAvg = closePrice[i];
+                minAvg = quotePrice[i];
             }
         }
     }
 
-    stockData(closePrice[n-1], closePrice[n-2]);
+    stockData(quotePrice[n-1], quotePrice[n-2]);
 
     //Assigns data to graph
-    ui->stockGraph->graph(0)->setData(timeInEpoch, closePrice);
+    ui->stockGraph->graph(0)->setData(timeInEpoch, quotePrice);
 
     //Set x axis range
     ui->stockGraph->xAxis->setRange(timeInEpoch[0], timeInEpoch[n-1]);
@@ -345,13 +354,53 @@ void MainWindow::ytd_Line_Graph()
     emit processingDone();
 }
 
+void MainWindow::oneMin_Line_Graph()
+{
+
+    ui->stockGraph->addGraph(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
+
+    QPen linePen;
+    linePen.setStyle(Qt::PenStyle::SolidLine);
+    linePen.setColor(QColor(255,255,255));
+    linePen.setWidth(1);
+    ui->stockGraph->graph(0)->setPen(linePen);
+    ui->stockGraph->graph(0)->setBrush(QBrush(QColor(211,211,211, 70)));
+    ui->stockGraph->graph(0)->setLineStyle(QCPGraph::lsLine);
+
+    //Creates X Axis on bottom
+    QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
+    dateTicker->setDateTimeFormat("mm:ss");
+    dateTicker->setDateTimeSpec(Qt::UTC);
+    dateTicker->setTickCount(12);
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->xAxis->setSubTicks(false);
+    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
+    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
+    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
+
+
+    // make left and bottom axes transfer their ranges to right and top axes:
+    connect(ui->stockGraph->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->stockGraph->xAxis2, SLOT(setRange(QCPRange)));
+    connect(ui->stockGraph->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->stockGraph->yAxis2, SLOT(setRange(QCPRange)));
+
+
+    connect(&dataTimer, SIGNAL(timeout()), this, SLOT(readData()));
+    dataTimer.start(1000);
+
+}
+
+//Shows year-to-date candlestick graph
 void MainWindow::ytd_Candle_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartYtd(symbolSearchedStd);
 
     //Stores x and y values
-    QVector<double> highPrice(365), lowPrice(365), openPrice(365), closePrice(365), timeInEpoch(365);
+    QVector<double> highPrice(365), lowPrice(365), openPrice(365), quotePrice(365), timeInEpoch(365);
     QVector<string>time(365);
 
     int  n = chartData.size();
@@ -404,11 +453,11 @@ void MainWindow::ytd_Candle_Graph()
 
         if(chartData[i].isMember("close"))
         {
-            closePrice[i] = (chartData[i]["close"].asDouble());
+            quotePrice[i] = (chartData[i]["close"].asDouble());
 
-            if((closePrice[i] == 0) && (i != chartData.size() - 1))
+            if((quotePrice[i] == 0) && (i != chartData.size() - 1))
             {
-                closePrice[i] = closePrice[i-1];
+                quotePrice[i] = quotePrice[i-1];
             }
         }
 
@@ -417,13 +466,13 @@ void MainWindow::ytd_Candle_Graph()
         timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
     }
 
-    stockData(closePrice[n-1], closePrice[n-2]);
+    stockData(quotePrice[n-1], quotePrice[n-2]);
 
     // create candlestick chart:
     candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
     candlesticks->setName("Candlestick");
     candlesticks->setChartStyle(QCPFinancial::csCandlestick);
-    candlesticks->setData(timeInEpoch, openPrice, highPrice, lowPrice, closePrice, false);
+    candlesticks->setData(timeInEpoch, openPrice, highPrice, lowPrice, quotePrice, false);
     candlesticks->setWidth(binSize*0.9);
     candlesticks->setTwoColored(true);
     candlesticks->setBrushPositive(QColor(0,128,0));
@@ -483,7 +532,7 @@ void MainWindow::ytd_Candle_Graph()
     ui->stockGraph->axisRect()->setBackground(axisRectGradient);
 
     //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0], timeInEpoch[n-1] + 86400);
+    ui->stockGraph->xAxis->setRange(timeInEpoch[0] - 86400, timeInEpoch[n-1] + 86400);
 
     //Set y axis range
     QCPRange yAxis(minAvg + 2, maxAvg + 2);

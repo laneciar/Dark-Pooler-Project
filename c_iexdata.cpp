@@ -279,7 +279,7 @@ Json::Value IEX::stocks::company(const string &symbol)
  "delayedPriceTime": 1498762739791,
  "processedTime": 1498763640156
  }*/
-Json::Value IEX::stocks::delayedQuote(const string &symbol)
+Json::Value IEX::stocks::Quote(const string &symbol)
 {
     Json::Value jsonData;
 
@@ -288,10 +288,14 @@ Json::Value IEX::stocks::delayedQuote(const string &symbol)
         return jsonData;
     }
 
+    string api(API_TOKEN);
     string url(IEX_ENDPOINT);
-    url += "/stock/"+symbol+"/delayed-quote";
+    url += "/stock/"+symbol+"/quote/?token="+api;
+
     IEX::sendGetRequest(jsonData, url);
+
     assert(jsonData.isArray()); //Crash if not an array
+
     return jsonData;
 }
 

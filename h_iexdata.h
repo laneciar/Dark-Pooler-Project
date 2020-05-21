@@ -35,7 +35,7 @@ namespace IEX {
         Json::Value chartDynamic(const string &);
         Json::Value company(const string &);
         Json::Value crypto();
-        Json::Value delayedQuote(const string &);
+        Json::Value Quote(const string &);
         Json::Value dividends(const string &, const string &);
         Json::Value earnings(const string &);
         Json::Value earningsToday();
