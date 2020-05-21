@@ -320,40 +320,17 @@ debug\moc_h_login.cpp: h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmessagebox.h \
 		ui_u_login.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QCheckBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcheckbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qicon.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QFrame \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGroupBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QHBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLabel \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLineEdit \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QPushButton \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QVBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
 		debug\moc_predefs.h \
 		D:\Qt\5.14.2\msvc2017_64\bin\moc.exe
 	D:\Qt\5.14.2\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include C:/Users/laner/Desktop/AlgoApplication/AlgoApplicationV4/debug/moc_predefs.h -ID:/Qt/5.14.2/msvc2017_64/mkspecs/win32-msvc -IC:/Users/laner/Desktop/AlgoApplication/AlgoApplicationV4 -IC:/Users/laner/Desktop/AlgoApplication/Libraries/vcpkg/installed/libcurl/include -IC:/Users/laner/Desktop/AlgoApplication/Libraries/jsoncpp -ID:/Qt/5.14.2/msvc2017_64/include -ID:/Qt/5.14.2/msvc2017_64/include/QtCharts -ID:/Qt/5.14.2/msvc2017_64/include/QtPrintSupport -ID:/Qt/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/5.14.2/msvc2017_64/include/QtCore -I"D:\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\ATLMFC\include" -I"D:\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.25.28610\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"D:\Windows Kits\10\include\10.0.18362.0\ucrt" -I"D:\Windows Kits\10\include\10.0.18362.0\shared" -I"D:\Windows Kits\10\include\10.0.18362.0\um" -I"D:\Windows Kits\10\include\10.0.18362.0\winrt" -I"D:\Windows Kits\10\include\10.0.18362.0\cppwinrt" h_login.h -o debug\moc_h_login.cpp
 
 debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		ui_u_mainwindow.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qvariant.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic.h \
+		h_stockchart.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtguiglobal.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qglobal.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qconfig.h \
@@ -365,29 +342,37 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsysinfo.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlogging.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qflags.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qglobalstatic.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmutex.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qnumeric.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbasicatomic.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qgenericatomic.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic_cxx11.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic_msvc.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbytearray.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qrefcount.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qglobalstatic.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmutex.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qnumeric.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtgui-config.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobjectdefs.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qnamespace.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qarraydata.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlist.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qalgorithms.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qiterator.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstring.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qchar.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbytearray.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qrefcount.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qarraydata.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringliteral.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlist.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qiterator.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qhashfunctions.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qpair.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qvector.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcontainertools_impl.h \
@@ -396,116 +381,56 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringlist.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregexp.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qscopedpointer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmetatype.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobjectdefs.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmap.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qdebug.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qhash.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qtextstream.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qiodevice.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobject.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreevent.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qscopedpointer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobject_impl.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlocale.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qshareddata.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qset.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QIcon \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qicon.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtguiglobal.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtgui-config.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsize.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmargins.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpixmap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpaintdevice.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindowdefs.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qrect.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsize.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpalette.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qcolor.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qrgb.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qrgba64.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qimage.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpixelformat.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtransform.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qbrush.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qmatrix.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpolygon.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qregion.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qdatastream.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qiodevice.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qline.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtransform.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpainterpath.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QApplication \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qapplication.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreapplication.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qeventloop.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qcursor.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdesktopwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpalette.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qbrush.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qimage.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpixelformat.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpixmap.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qshareddata.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qhash.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfont.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfontmetrics.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfontinfo.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qcursor.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qkeysequence.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qevent.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qvariant.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmap.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qdebug.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qtextstream.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlocale.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qset.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qurl.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qurlquery.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qfile.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qfiledevice.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvector2d.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qguiapplication.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qinputmethod.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QComboBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qframe.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QFrame \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGridLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGroupBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QHBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLabel \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLineEdit \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMainWindow \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QPushButton \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QSpacerItem \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QStackedWidget \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstackedwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QVBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
 		h_qcustomplot.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QPointer \
@@ -516,6 +441,8 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbasictimer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPainter \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpainter.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPaintEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QMouseEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QWheelEvent \
@@ -557,6 +484,7 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QRect \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qicon.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\QGLPixelBuffer \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\qglpixelbuffer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\qgl.h \
@@ -570,6 +498,8 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QtCoreDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractanimation.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstracteventdispatcher.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qeventloop.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractnativeeventfilter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractproxymodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractstate.h \
@@ -584,6 +514,7 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborarray.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborvalue.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborcommon.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\quuid.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcbormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborstream.h \
@@ -591,6 +522,7 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcollator.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcommandlineoption.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcommandlineparser.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreapplication.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qconcatenatetablesproxymodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcryptographichash.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qdeadlinetimer.h \
@@ -682,9 +614,11 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QtGuiDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qglyphrun.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qrawfont.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfontdatabase.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocument.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessible.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessiblebridge.h \
@@ -700,6 +634,8 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qgenericmatrix.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qgenericplugin.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qgenericpluginfactory.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qguiapplication.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qinputmethod.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qiconengine.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qiconengineplugin.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qimageiohandler.h \
@@ -752,14 +688,32 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocumentwriter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlist.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtexttable.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtguiversion.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgets \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgetsDepends \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qframe.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaccessiblewidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaction.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qactiongroup.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qapplication.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdesktopwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qbuttongroup.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcalendarwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcheckbox.h \
@@ -767,7 +721,9 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolumnview.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommandlinkbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommonstyle.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcompleter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdatawidgetmapper.h \
@@ -804,15 +760,19 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QVector3D \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgraphicsview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollarea.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qheaderview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qinputdialog.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemdelegate.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemeditorfactory.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeyeventtransition.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeysequenceedit.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlcdnumber.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmdiarea.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmdisubwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmenu.h \
@@ -833,12 +793,14 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QScrollerProperties \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollerproperties.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QMetaType \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qshortcut.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsizegrip.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qspinbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsplashscreen.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsplitter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstackedlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstackedwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstatusbar.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleditemdelegate.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstylefactory.h \
@@ -874,7 +836,6 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewdialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qtprintsupportversion.h \
-		h_stockchart.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curl.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curlver.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\system.h \
@@ -884,6 +845,7 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\typecheck-gcc.h \
 		h_webcurl.h \
 		h_webscrapper.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMainWindow \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QColor \
 		h_mainwindow.h \
 		h_iexdata.h \
@@ -903,6 +865,7 @@ debug\moc_h_mainwindow.cpp: h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QJsonValue \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QDialog \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QStackedWidget \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QDate \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCharts\QtCharts \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCharts\QtChartsDepends \
@@ -2737,52 +2700,10 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmessagebox.h \
 		ui_u_login.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QCheckBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcheckbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qicon.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QFrame \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGroupBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QHBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLabel \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLineEdit \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QPushButton \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QVBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
 		h_mainwindow.h \
 		ui_u_mainwindow.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QIcon \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QComboBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGridLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMainWindow \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QSpacerItem \
+		h_stockchart.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
 		h_qcustomplot.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QPointer \
@@ -2793,6 +2714,8 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbasictimer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPainter \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpainter.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPaintEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QWheelEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVector \
@@ -2832,6 +2755,7 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QRect \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qicon.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\QGLPixelBuffer \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\qglpixelbuffer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\qgl.h \
@@ -2845,6 +2769,7 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QtCoreDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractanimation.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstracteventdispatcher.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractnativeeventfilter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractproxymodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractstate.h \
@@ -2859,6 +2784,7 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborarray.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborvalue.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborcommon.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\quuid.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcbormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborstream.h \
@@ -2957,9 +2883,11 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QtGuiDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qglyphrun.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qrawfont.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfontdatabase.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocument.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessible.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessiblebridge.h \
@@ -3027,20 +2955,38 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocumentwriter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlist.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtexttable.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtguiversion.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgets \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgetsDepends \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaccessiblewidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaction.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qactiongroup.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qbuttongroup.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcalendarwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcheckbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolordialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolumnview.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommandlinkbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommonstyle.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcompleter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdatawidgetmapper.h \
@@ -3077,15 +3023,19 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QVector3D \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgraphicsview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollarea.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qheaderview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qinputdialog.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemdelegate.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemeditorfactory.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeyeventtransition.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeysequenceedit.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlcdnumber.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmdiarea.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmdisubwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmenu.h \
@@ -3105,6 +3055,7 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QScrollerProperties \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollerproperties.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QMetaType \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qshortcut.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsizegrip.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qspinbox.h \
@@ -3146,7 +3097,6 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewdialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qtprintsupportversion.h \
-		h_stockchart.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curl.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curlver.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\system.h \
@@ -3156,6 +3106,7 @@ debug\c_login.obj: c_login.cpp h_login.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\typecheck-gcc.h \
 		h_webcurl.h \
 		h_webscrapper.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMainWindow \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QColor \
 		h_iexdata.h \
 		..\Libraries\jsoncpp\json\json.h \
@@ -3380,52 +3331,10 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmessagebox.h \
 		ui_u_login.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QCheckBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcheckbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qicon.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QFrame \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGroupBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QHBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLabel \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLineEdit \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QPushButton \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QVBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
 		h_mainwindow.h \
 		ui_u_mainwindow.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QIcon \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QComboBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGridLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMainWindow \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QSpacerItem \
+		h_stockchart.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
 		h_qcustomplot.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QPointer \
@@ -3436,6 +3345,8 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbasictimer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPainter \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpainter.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPaintEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QWheelEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVector \
@@ -3475,6 +3386,7 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QRect \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qicon.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\QGLPixelBuffer \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\qglpixelbuffer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\qgl.h \
@@ -3488,6 +3400,7 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QtCoreDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractanimation.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstracteventdispatcher.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractnativeeventfilter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractproxymodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractstate.h \
@@ -3502,6 +3415,7 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborarray.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborvalue.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborcommon.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\quuid.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcbormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborstream.h \
@@ -3600,9 +3514,11 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QtGuiDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qglyphrun.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qrawfont.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfontdatabase.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocument.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessible.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessiblebridge.h \
@@ -3670,20 +3586,38 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocumentwriter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlist.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtexttable.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtguiversion.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgets \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgetsDepends \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaccessiblewidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaction.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qactiongroup.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qbuttongroup.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcalendarwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcheckbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolordialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolumnview.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommandlinkbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommonstyle.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcompleter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdatawidgetmapper.h \
@@ -3720,15 +3654,19 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QVector3D \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgraphicsview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollarea.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qheaderview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qinputdialog.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemdelegate.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemeditorfactory.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeyeventtransition.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeysequenceedit.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlcdnumber.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmdiarea.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmdisubwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmenu.h \
@@ -3748,6 +3686,7 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QScrollerProperties \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollerproperties.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QMetaType \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qshortcut.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsizegrip.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qspinbox.h \
@@ -3789,7 +3728,6 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewdialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qtprintsupportversion.h \
-		h_stockchart.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curl.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curlver.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\system.h \
@@ -3799,6 +3737,7 @@ debug\c_main.obj: c_main.cpp h_login.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\typecheck-gcc.h \
 		h_webcurl.h \
 		h_webscrapper.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMainWindow \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QColor \
 		h_iexdata.h \
 		..\Libraries\jsoncpp\json\json.h \
@@ -3903,9 +3842,11 @@ debug\c_main.obj: c_main.cpp h_login.h \
 
 debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		ui_u_mainwindow.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qvariant.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic.h \
+		h_stockchart.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtguiglobal.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qglobal.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qconfig-bootstrapped.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qconfig.h \
@@ -3917,29 +3858,37 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsysinfo.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlogging.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qflags.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qglobalstatic.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmutex.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qnumeric.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbasicatomic.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic_bootstrap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qgenericatomic.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic_cxx11.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qatomic_msvc.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbytearray.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qrefcount.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qglobalstatic.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmutex.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qnumeric.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qversiontagging.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtgui-config.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindowdefs.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobjectdefs.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qnamespace.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qarraydata.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlist.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qalgorithms.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qiterator.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qhashfunctions.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobject.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstring.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qchar.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbytearray.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qrefcount.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qarraydata.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringliteral.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringalgorithms.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringbuilder.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlist.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qalgorithms.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qiterator.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qhashfunctions.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qpair.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qvector.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcontainertools_impl.h \
@@ -3948,116 +3897,56 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringlist.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregexp.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qstringmatcher.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreevent.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qscopedpointer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmetatype.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qvarlengtharray.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcontainerfwd.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobjectdefs.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobjectdefs_impl.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmap.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qdebug.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qhash.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qtextstream.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qiodevice.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobject.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreevent.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qscopedpointer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qobject_impl.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlocale.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qshareddata.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qset.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsharedpointer.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QIcon \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qicon.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtguiglobal.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtgui-config.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsize.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmargins.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpixmap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpaintdevice.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindowdefs.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindowdefs_win.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qrect.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsize.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpalette.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qcolor.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qrgb.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qrgba64.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qimage.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpixelformat.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtransform.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qbrush.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qmatrix.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpolygon.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qregion.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qdatastream.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qiodevice.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qline.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtransform.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpainterpath.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QApplication \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qapplication.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgetsglobal.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtwidgets-config.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreapplication.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qeventloop.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qcursor.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdesktopwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpalette.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qbrush.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qimage.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpixelformat.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpixmap.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsharedpointer.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qshareddata.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qhash.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qsharedpointer_impl.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfont.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfontmetrics.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfontinfo.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsizepolicy.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qcursor.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qkeysequence.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qevent.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qvariant.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qmap.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qdebug.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qtextstream.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qlocale.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qset.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcontiguouscache.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qurl.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qurlquery.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qfile.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qfiledevice.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvector2d.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtouchdevice.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qguiapplication.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qinputmethod.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QComboBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qframe.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QFrame \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGridLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGroupBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QHBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLabel \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLineEdit \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMainWindow \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QPushButton \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QSpacerItem \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QStackedWidget \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstackedwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QVBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
 		h_qcustomplot.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QObject \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QPointer \
@@ -4068,6 +3957,8 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbasictimer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPainter \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpainter.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPaintEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QMouseEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QWheelEvent \
@@ -4109,6 +4000,7 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QRect \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qicon.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\QGLPixelBuffer \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\qglpixelbuffer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtOpenGL\qgl.h \
@@ -4122,6 +4014,8 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QtCoreDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractanimation.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstracteventdispatcher.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qeventloop.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractnativeeventfilter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractproxymodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractstate.h \
@@ -4136,6 +4030,7 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborarray.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborvalue.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborcommon.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\quuid.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcbormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborstream.h \
@@ -4143,6 +4038,7 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcollator.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcommandlineoption.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcommandlineparser.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreapplication.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qconcatenatetablesproxymodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcryptographichash.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qdeadlinetimer.h \
@@ -4234,9 +4130,11 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QtGuiDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qglyphrun.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qrawfont.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfontdatabase.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocument.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessible.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessiblebridge.h \
@@ -4252,6 +4150,8 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qgenericmatrix.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qgenericplugin.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qgenericpluginfactory.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qguiapplication.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qinputmethod.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qiconengine.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qiconengineplugin.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qimageiohandler.h \
@@ -4304,14 +4204,32 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocumentwriter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlist.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtexttable.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtguiversion.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgets \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgetsDepends \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qframe.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaccessiblewidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaction.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qactiongroup.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qapplication.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdesktopwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qbuttongroup.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcalendarwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcheckbox.h \
@@ -4319,7 +4237,9 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolumnview.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommandlinkbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommonstyle.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcompleter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdatawidgetmapper.h \
@@ -4356,15 +4276,19 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QVector3D \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgraphicsview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollarea.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qheaderview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qinputdialog.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemdelegate.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemeditorfactory.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeyeventtransition.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeysequenceedit.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlcdnumber.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmdiarea.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmdisubwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmenu.h \
@@ -4385,12 +4309,14 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QScrollerProperties \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollerproperties.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QMetaType \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qshortcut.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsizegrip.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qspinbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsplashscreen.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsplitter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstackedlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstackedwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstatusbar.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleditemdelegate.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstylefactory.h \
@@ -4426,7 +4352,6 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewdialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qtprintsupportversion.h \
-		h_stockchart.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curl.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curlver.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\system.h \
@@ -4436,6 +4361,7 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\typecheck-gcc.h \
 		h_webcurl.h \
 		h_webscrapper.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMainWindow \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QColor \
 		h_iexdata.h \
 		..\Libraries\jsoncpp\json\json.h \
@@ -4454,6 +4380,7 @@ debug\c_mainwindow.obj: c_mainwindow.cpp h_mainwindow.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QJsonValue \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QDialog \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QStackedWidget \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QDate \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCharts\QtCharts \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCharts\QtChartsDepends \
@@ -5674,53 +5601,7 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget \
 		h_mainwindow.h \
 		ui_u_mainwindow.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QIcon \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QApplication \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qapplication.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreapplication.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qeventloop.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdesktopwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qguiapplication.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qinputmethod.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QComboBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qframe.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QFrame \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGridLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QGroupBox \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QHBoxLayout \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLabel \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QLineEdit \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QPushButton \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QSpacerItem \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QStackedWidget \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstackedwidget.h \
-		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QVBoxLayout \
+		h_stockchart.h \
 		h_qcustomplot.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QPointer \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qpointer.h \
@@ -5730,6 +5611,8 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qbasictimer.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPainter \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpainter.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qpen.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QPaintEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QMouseEvent \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QWheelEvent \
@@ -5784,6 +5667,8 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QtCoreDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractanimation.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstracteventdispatcher.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qeventloop.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractitemmodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractnativeeventfilter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractproxymodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qabstractstate.h \
@@ -5798,6 +5683,7 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborarray.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborvalue.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborcommon.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qregularexpression.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\quuid.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcbormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcborstream.h \
@@ -5805,6 +5691,7 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcollator.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcommandlineoption.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcommandlineparser.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreapplication.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qconcatenatetablesproxymodel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qcryptographichash.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\qdeadlinetimer.h \
@@ -5896,9 +5783,11 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QtGuiDepends \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qabstracttextdocumentlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextformat.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qglyphrun.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qrawfont.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qfontdatabase.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextcursor.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocument.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessible.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qaccessiblebridge.h \
@@ -5914,6 +5803,8 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qgenericmatrix.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qgenericplugin.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qgenericpluginfactory.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qguiapplication.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qinputmethod.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qiconengine.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qiconengineplugin.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qimageiohandler.h \
@@ -5966,14 +5857,31 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextdocumentwriter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtextlist.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtexttable.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qvalidator.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\qtguiversion.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgets \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QtWidgetsDepends \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleoption.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractslider.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyle.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qtabbar.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qrubberband.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qframe.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractitemview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qabstractscrollarea.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaccessiblewidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaction.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qactiongroup.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qapplication.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdesktopwidget.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qboxlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlayoutitem.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgridlayout.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qbuttongroup.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcalendarwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcheckbox.h \
@@ -5981,7 +5889,9 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolormap.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcolumnview.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcombobox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommandlinkbutton.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qpushbutton.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcommonstyle.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qcompleter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdatawidgetmapper.h \
@@ -6018,12 +5928,15 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtGui\QVector3D \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgraphicsview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollarea.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qgroupbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qheaderview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qinputdialog.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlineedit.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemdelegate.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qitemeditorfactory.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeyeventtransition.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qkeysequenceedit.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlabel.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlcdnumber.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistview.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qlistwidget.h \
@@ -6047,12 +5960,14 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QScrollerProperties \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qscrollerproperties.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QMetaType \
+		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qshortcut.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsizegrip.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qspinbox.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsplashscreen.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qsplitter.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstackedlayout.h \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstackedwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstatusbar.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstyleditemdelegate.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstylefactory.h \
@@ -6088,7 +6003,6 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewdialog.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtPrintSupport\qtprintsupportversion.h \
-		h_stockchart.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curl.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\curlver.h \
 		..\Libraries\vcpkg\installed\libcurl\include\curl\system.h \
@@ -6114,6 +6028,7 @@ debug\c_webscrapper.obj: c_webscrapper.cpp h_webscrapper.h \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QJsonValue \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMessageBox \
 		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QDialog \
+		D:\Qt\5.14.2\msvc2017_64\include\QtWidgets\QStackedWidget \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCore\QDate \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCharts\QtCharts \
 		D:\Qt\5.14.2\msvc2017_64\include\QtCharts\QtChartsDepends \

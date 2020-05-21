@@ -75,6 +75,7 @@ public:
 public slots:
 
 signals:
+    void processingDone();
 
 private slots:
 
@@ -93,10 +94,7 @@ private slots:
 
     void stockData(double num1, double num2);
 
-    void on_candleStickButton_clicked();
-
-    void on_lineChartButton_clicked();
-
+    void on_chartStlyeBox_currentIndexChanged(int index);
 
 private:
     Ui::MainWindow *ui;

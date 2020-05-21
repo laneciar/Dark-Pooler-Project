@@ -26,10 +26,27 @@ void MainWindow::setup()
     QString date = QDate::currentDate().toString(format);
     ui->currentDate->setText(date);
 
-    //Sets stock info to nothing
-    ui->stockName->setText("Dark");
-    ui->stockPrice->setText("Pooler");
-    ui->stockPriceChange->setText("");
+    symbolSearched = "SPY";
+    symbolSearchedStd = "SPY";
+
+    assignStatistics();
+    ytd_Line_Graph();
+
+    //Creates Background
+    QLinearGradient plotGradient;
+    plotGradient.setStart(0, 0);
+    plotGradient.setFinalStop(0, 350);
+    plotGradient.setColorAt(0, QColor(80, 80, 80));
+    plotGradient.setColorAt(1, QColor(50, 50, 50));
+    ui->stockGraph->setBackground(plotGradient);
+
+    //Creates Axis Rectangle and color
+    QLinearGradient axisRectGradient;
+    axisRectGradient.setStart(0, 0);
+    axisRectGradient.setFinalStop(0, 350);
+    axisRectGradient.setColorAt(0, QColor(80, 80, 80));
+    axisRectGradient.setColorAt(1, QColor(39, 39, 39));
+    ui->stockGraph->axisRect()->setBackground(axisRectGradient);
 }
 
 //For mouse movement position on click
@@ -151,9 +168,7 @@ void MainWindow::assignStatistics()
 {
 
     pageAddress = "https://www.wsj.com/market-data/quotes/" + symbolSearchedStd + "/financials";
-    cout << pageAddress << endl;
     CurlObj webPage(pageAddress);
-    cout << "after curl" << endl;
     WebScrapper web = WebScrapper(symbolSearchedStd, webPage.getData());
 
     ui->peRatio->setNum(web.peRatio);
@@ -174,7 +189,6 @@ void MainWindow::assignStatistics()
     ui->interestCoverageL->setNum(web.interestCoverage);
     ui->lastEPSDate->setText(web.lastReport);
     ui->nextEPSDate->setText(web.nextReport);
-    ui->fiscalEnd->setText(web.fiscalEnd);
     return;
 }
 
@@ -203,24 +217,25 @@ void MainWindow::stockData(double num1, double num2)
     }
 }
 
-//User selects candlestick chart
-void MainWindow::on_candleStickButton_clicked()
+//Choses chart style from combo box
+void MainWindow::on_chartStlyeBox_currentIndexChanged(int index)
 {
-    clearChart();
-    ytd_Candle_Graph();
-    isCandlestickChart = true;
-    isLineChart = false;
-}
+    if(index == 0)
+    {
+        clearChart();
+        ytd_Line_Graph();
+        isLineChart = true;
+        isCandlestickChart = false;
+    }
 
-//User selects line chart
-void MainWindow::on_lineChartButton_clicked()
-{
-    clearChart();
-    ytd_Line_Graph();
-    isLineChart = true;
-    isCandlestickChart = false;
+    else if(index == 1)
+    {
+        clearChart();
+        ytd_Candle_Graph();
+        isCandlestickChart = true;
+        isLineChart = false;
+    }
 }
-
 
 
 //Shows year-to-date graph of specific company
@@ -238,38 +253,8 @@ void MainWindow::ytd_Line_Graph()
     //Finds max and min for range
     float maxAvg = chartData[0]["close"].asDouble();
     float minAvg = chartData[0]["close"].asDouble();
-    //Reads in data from json(historical data 1 day delayed)
-    for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
-    {
-        if(chartData[i].isMember("close"))
-        {
-            closePrice[i] = (chartData[i]["close"].asDouble());
-            time[i] = chartData[i]["date"].asString();
-            QString temp = QString::fromStdString(time[i]);
-            timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
 
-            if((closePrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                closePrice[i] = closePrice[i-1];
-            }
-
-            if(closePrice[i] > maxAvg)
-            {
-                maxAvg = closePrice[i];
-            }
-
-            else if(closePrice[i] < minAvg)
-            {
-                minAvg = closePrice[i];
-            }
-        }
-    }
-
-    stockData(closePrice[n-1], closePrice[n-2]);
-
-    //Initializes graph
     ui->stockGraph->addGraph(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
-    ui->stockGraph->graph(0)->setData(timeInEpoch, closePrice);
 
     QPen linePen;
     linePen.setStyle(Qt::PenStyle::SolidLine);
@@ -314,21 +299,37 @@ void MainWindow::ytd_Line_Graph()
     //Rescale Axis
     ui->stockGraph->rescaleAxes();
 
-    //Creates Background
-    QLinearGradient plotGradient;
-    plotGradient.setStart(0, 0);
-    plotGradient.setFinalStop(0, 350);
-    plotGradient.setColorAt(0, QColor(80, 80, 80));
-    plotGradient.setColorAt(1, QColor(50, 50, 50));
-    ui->stockGraph->setBackground(plotGradient);
+    //Reads in data from json(historical data 1 day delayed)
+    for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
+    {
+        if(chartData[i].isMember("close"))
+        {
+            closePrice[i] = (chartData[i]["close"].asDouble());
+            time[i] = chartData[i]["date"].asString();
+            QString temp = QString::fromStdString(time[i]);
+            timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
 
-    //Creates Axis Rectangle and color
-    QLinearGradient axisRectGradient;
-    axisRectGradient.setStart(0, 0);
-    axisRectGradient.setFinalStop(0, 350);
-    axisRectGradient.setColorAt(0, QColor(80, 80, 80));
-    axisRectGradient.setColorAt(1, QColor(39, 39, 39));
-    ui->stockGraph->axisRect()->setBackground(axisRectGradient);
+            if((closePrice[i] == 0) && (i != chartData.size() - 1))
+            {
+                closePrice[i] = closePrice[i-1];
+            }
+
+            if(closePrice[i] > maxAvg)
+            {
+                maxAvg = closePrice[i];
+            }
+
+            else if(closePrice[i] < minAvg)
+            {
+                minAvg = closePrice[i];
+            }
+        }
+    }
+
+    stockData(closePrice[n-1], closePrice[n-2]);
+
+    //Assigns data to graph
+    ui->stockGraph->graph(0)->setData(timeInEpoch, closePrice);
 
     //Set x axis range
     ui->stockGraph->xAxis->setRange(timeInEpoch[0], timeInEpoch[n-1]);
@@ -340,9 +341,8 @@ void MainWindow::ytd_Line_Graph()
     ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
     ui->stockGraph->replot();
 
-
-
-
+    //Signal that data is read in
+    emit processingDone();
 }
 
 void MainWindow::ytd_Candle_Graph()

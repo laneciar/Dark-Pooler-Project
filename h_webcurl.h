@@ -9,7 +9,6 @@ class CurlObj {
 public:
     CurlObj (std::string url) {
         CURLcode res;
-        cout << "asd";
 
         curl = curl_easy_init();
         if (!curl)
