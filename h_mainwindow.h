@@ -45,6 +45,7 @@ public:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void setup();
+    void setupLineChart(QString timeFormat, Json::Value chartData);
     void assignStatistics();
     void clearChart();
     void stockData(double num1, double num2);
@@ -104,9 +105,9 @@ private:
     QCPFinancial *candlesticks;
     string pageAddress;
     string symbolSearchedStd;
+    int counter = 0;
     bool isMaximized = false;
     bool isMousePressed;
-    int counter = 0;
     bool isLineChart = true, isCandlestickChart = false;
 
 

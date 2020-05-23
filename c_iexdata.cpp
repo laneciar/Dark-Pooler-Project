@@ -75,7 +75,7 @@ void IEX::sendGetRequest(Json::Value &jsonData, const string url)
  },
  }
  */
-Json::Value IEX::stocks::batch(const string &symbol)
+Json::Value IEX::stocks::intraday(const string &symbol)
 {
     Json::Value jsonData;
 
@@ -85,7 +85,7 @@ Json::Value IEX::stocks::batch(const string &symbol)
     }
 
     string url(IEX_ENDPOINT);
-    url+="/stock/"+symbol+"/batch";
+    url+="/stock/"+symbol+"/intraday-prices?token=" + API_TOKEN;
     IEX::sendGetRequest(jsonData, url);
     assert(jsonData.isArray()); //Crash if not an array
     return jsonData;

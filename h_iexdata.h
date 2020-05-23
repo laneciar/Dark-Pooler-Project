@@ -26,7 +26,7 @@ namespace IEX {
     vector<string> getSymbolList();
     void parseSymbolData(const Json::Value &, vector<string> &);
     namespace stocks {
-        Json::Value batch(const string &);
+        Json::Value intraday(const string &);
         Json::Value book(const string &);
         Json::Value chart(const string &);
         Json::Value chartYtd(const string &);
