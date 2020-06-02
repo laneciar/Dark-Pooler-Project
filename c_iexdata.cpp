@@ -187,9 +187,10 @@ Json::Value IEX::stocks::chartRange(const string &symbol, const string &range)
         return jsonData;
     }
 
-    if(range == "5y" || range == "2y" || range == "1y" || range == "ytd" || range == "6m" || range == "3m" || range == "1m" || range == "1d") {
+    if(range == "5y" || range == "2y" || range == "1y" || range == "ytd" || range == "6m" || range == "3m" || range == "1mm" || range=="5dm" || range == "1d") {
         string url(IEX_ENDPOINT);
-        url+="/stock/"+symbol+"/chart/"+range;
+        string api(API_TOKEN);
+        url+="/stock/"+symbol+"/chart/"+range+"?token="+api;
         IEX::sendGetRequest(jsonData, url);
     }
     else{

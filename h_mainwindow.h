@@ -45,30 +45,42 @@ public:
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void setup();
-    void setupLineChart(QString timeFormat, Json::Value chartData);
+    void setupLineChart(QString timeFormat, float tickCount);
     void assignStatistics();
     void clearChart();
     void stockData(double num1, double num2);
 
     //Line Graphs
-    void ytd_Line_Graph();
-    void oneMin_Line_Graph();
-    void fiveMin_Line_Graph();
-    void fifteenMin_Line_Graph();
-    void oneHour_Line_Graph();
-    void fiveHour_Line_Graph();
-    void oneDay_Line_Graph();
-    void oneMonth_Line_Graph();
+
+    void rt_oneDay_Line_Graph();
+    void rt_oneWeek_Line_Graph();
+    void rt_oneMonth_Line_Graph();
+    void rt_sixMonth_Line_Graph();
+    void rt_oneYear_Line_Graph();
+
+    void h_oneDay_Line_Graph();
+    void h_oneWeek_Line_Graph();
+    void h_oneMonth_Line_Graph();
+    void h_sixMonth_Line_Graph();
+    void h_oneYear_Line_Graph();
+    void h_ytd_Line_Graph();
+
 
     //Candlestick Graphs
-    void ytd_Candle_Graph();
-    void oneMin_Candle_Graph();
-    void fiveMin_Candle_Graph();
-    void fifteenMin_Candle_Graph();
-    void oneHour_Candle_Graph();
-    void fiveHour_Candle_Graph();
-    void oneDay_Candle_Graph();
-    void oneMonth_Candle_Graph();
+    void rt_oneDay_Candle_Graph();
+    void rt_oneWeek_Candle_Graph();
+    void rt_oneMonth_Candle_Graph();
+    void rt_sixMonth_Candle_Graph();
+    void rt_oneYear_Candle_Graph();
+
+
+    void h_oneDay_Candle_Graph();
+    void h_oneWeek_Candle_Graph();
+    void h_oneMonth_Candle_Graph();
+    void h_sixMonth_Candle_Graph();
+    void h_oneYear_Candle_Graph();
+    void h_ytd_Candle_Graph();
+
 
 
 
@@ -76,9 +88,10 @@ public:
 
 public slots:
     void readData();
+    void refresh();
 
 signals:
-    void processingDone();
+    void chartChange();
 
 private slots:
 
@@ -94,7 +107,9 @@ private slots:
 
     void on_chartStlyeBox_currentIndexChanged(int index);
 
+    void on_realTimeBox_stateChanged(int arg1);
 
+    void on_timeFrame_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
@@ -103,12 +118,13 @@ private:
     QPoint startPos;
     QTimer *timer, dataTimer;
     QCPFinancial *candlesticks;
+    QString currentChartRange;
     string pageAddress;
     string symbolSearchedStd;
     int counter = 0;
     bool isMaximized = false;
     bool isMousePressed;
-    bool isLineChart = true, isCandlestickChart = false;
+    bool isLineChart, isCandlestickChart, isRealTime;
 
 
 
