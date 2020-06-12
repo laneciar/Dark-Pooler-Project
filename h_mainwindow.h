@@ -7,6 +7,7 @@
 #include "h_webcurl.h"
 #include "h_webscrapper.h"
 #include "h_iexdata.h"
+#include "h_MyAxisTickerText.h"
 
 #include <QMessageBox>
 #include <string.h>
@@ -41,11 +42,13 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+
+
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void setup();
-    void setupLineChart(QString timeFormat, float tickCount);
+    void setupLineChart();
     void assignStatistics();
     void clearChart();
     void stockData(double num1, double num2);
@@ -112,6 +115,7 @@ private slots:
     void on_timeFrame_currentIndexChanged(const QString &arg1);
 
 private:
+
     Ui::MainWindow *ui;
     QSizePolicy QSizePolicy;
     QString symbolSearched;

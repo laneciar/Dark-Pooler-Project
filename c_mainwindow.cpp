@@ -17,7 +17,7 @@ void MainWindow::setup()
 {
     connect(this, SIGNAL(chartChange()), this, SLOT(refresh()));
 
-
+    isMousePressed = false;
     //Clock Setup
     ui->setupUi(this);
     timer = new QTimer(this);
@@ -58,7 +58,7 @@ void MainWindow::setup()
 }
 
 //Setup Basic Line Cart Design
-void MainWindow::setupLineChart(QString timeFormat, float tickCount)
+void MainWindow::setupLineChart()
 {
     ui->stockGraph->addGraph(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
 
@@ -72,8 +72,6 @@ void MainWindow::setupLineChart(QString timeFormat, float tickCount)
     ui->stockGraph->graph(0)->setLineStyle(QCPGraph::lsLine);
 
     //Creates Y Axis on right side
-    QSharedPointer<QCPAxisTicker> valueTicker(new QCPAxisTicker);
-    ui->stockGraph->yAxis2->setTicker(valueTicker);
     ui->stockGraph->yAxis->setVisible(false);
     ui->stockGraph->yAxis2->setVisible(true);
     ui->stockGraph->yAxis2->setSubTicks(false);
@@ -87,11 +85,6 @@ void MainWindow::setupLineChart(QString timeFormat, float tickCount)
     ui->stockGraph->yAxis2->grid()->setVisible(true);
 
     //Creates X Axis on bottom
-    QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
-    dateTicker->setDateTimeFormat(timeFormat);
-    dateTicker->setDateTimeSpec(Qt::UTC);
-    dateTicker->setTickCount(tickCount);
-    ui->stockGraph->xAxis->setTicker(dateTicker);
     ui->stockGraph->xAxis->setSubTicks(false);
     ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
     ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
@@ -499,8 +492,8 @@ void MainWindow::stockData(double num1, double num2)
 void MainWindow::readData()
 {
     Json::Value chartData = IEX::stocks::intraday(symbolSearchedStd);
-    QVector<double> value, epoch;
-    QVector<string> time;
+    QVector<double> value, timeInEpoch;
+    QVector<string> time, minute;
 
     //Reads in data from json(historical data 1 day delayed)
     for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
@@ -512,18 +505,21 @@ void MainWindow::readData()
             value[i] = value[i-1];
         }
 
-        //time[i] = chartData[i]["minute"].asString();
-        //QString temp = QString::fromStdString(time[i]);
-        //epoch[i] = QDateTime::fromString(temp, "hh::mm").toSecsSinceEpoch();
-        epoch.push_back(28800 + i * 60);
+        time.push_back(chartData[i]["date"].asString());
+        auto timeDate = QDate::fromString(time[i].c_str(), Qt::ISODate);
+
+        minute.push_back(chartData[i]["minute"].asString());
+        auto minuteDate = QTime::fromString(minute[i].c_str(), "hh:mm");
+
+        timeInEpoch.push_back(QDateTime(timeDate, minuteDate, Qt::OffsetFromUTC).toSecsSinceEpoch());
 
     }
 
     //Adds data from the day
-    ui->stockGraph->graph(0)->setData(epoch, value);
+    ui->stockGraph->graph(0)->setData(timeInEpoch, value);
 
     //Sets temporary range
-    ui->stockGraph->xAxis->setRange(epoch[0], epoch[chartData.size()-1]  + 3600);
+    ui->stockGraph->xAxis->setRange(timeInEpoch[0], timeInEpoch[chartData.size()-1]  + 500);
     ui->stockGraph->yAxis2->setRange(value[value.size()-1], 5, Qt::AlignCenter);
 
     ui->stockGraph->replot();
@@ -531,13 +527,12 @@ void MainWindow::readData()
 
 
 
-            // LINE CHARTS
-            //Real Time Charting
+            //   LINE CHARTS
+            //Real Time Charting(Incomplete)
 
-//Completed(Still need to fix some ui stuff)
 void MainWindow::rt_oneDay_Line_Graph()
 {
-    setupLineChart("hh: mm ap", 9);
+    setupLineChart();
     //Starts real time data
     readData();
     connect(&dataTimer, SIGNAL(timeout()), this, SLOT(readData()));
@@ -568,328 +563,313 @@ void MainWindow::rt_oneYear_Line_Graph()
 
             //Historical Charting
 
-//Completed(Still need to fix x axis)
+//Needs UI Work
 void MainWindow::h_oneDay_Line_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "1d");
 
-    setupLineChart("hh: mm ap", 9);
+    setupLineChart();
 
-    //Stores x and y values
-    QVector<double> value, epoch;
-    QVector<string>time(390);
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(13);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
 
-
-    int  n = chartData.size();
-
-    //Finds max and min for range
-    float maxAvg = chartData[0]["average"].asDouble();
-    float minAvg = chartData[0]["average"].asDouble();
+    QCPDataContainer<QCPGraphData> datas;
+    QVector<string> minute;
 
     //Reads in data from json(historical data 1 day delayed)
     for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
     {
-        if(chartData[i].isMember("average"))
+        if(chartData[i]["average"].asDouble() == 0 && i != chartData.size()-1)
         {
-            value.push_back(chartData[i]["average"].asDouble());
-            time[i] = chartData[i]["date"].asString();
-            epoch.push_back(28800 + i * 60);
-
-            if((value[i] == 0) && (i != chartData.size() - 1))
-            {
-                value[i] = value[i-1];
-            }
-
-            if(value[i] > maxAvg)
-            {
-                maxAvg = value[i];
-            }
-
-            else if(value[i] < minAvg)
-            {
-                minAvg = value[i];
-
-            }
+            chartData[i]["average"] = chartData[i-1]["average"];
         }
+
+        QCPGraphData data;
+        data.key = i;
+        data.value = chartData[i]["average"].asDouble();
+        datas.add(data);
+
+        minute.push_back(chartData[i]["minute"].asString());
+
+        dateTicker->addTick(i, QString::fromStdString(minute[i]));
+
+
+
     }
 
-    stockData(value[n-1], value[n-2]);
+    dateTicker->addTick(chartData.size(), "16:00");
+
+    stockData(chartData[chartData.size()-1]["average"].asDouble(), chartData[chartData.size()-2]["average"].asDouble());
 
     //Assigns data to graph
-    ui->stockGraph->graph(0)->setData(epoch, value);
+    ui->stockGraph->graph(0)->data()->set(datas);
 
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(epoch[0], epoch[chartData.size()-1]  + 3600);
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
 
-    //Set y axis range
-    ui->stockGraph->yAxis2->setRange(value[value.size()-1], 4, Qt::AlignCenter);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
+
     ui->stockGraph->replot();
 }
 
-//Need to fix the x axis dates
+//Needs UI Work
 void MainWindow::h_oneWeek_Line_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "5dm");
 
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(5);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+
+    QCPDataContainer<QCPGraphData> datas;
+
     //Stores x and y values
-    QVector<double> value, timeInEpoch;
-    QVector<string>time(195);
-    setupLineChart("ddd, MMM d", 8);
-
-    int  n = chartData.size();
-
-    //Finds max and min for range
-    float maxAvg = chartData[0]["average"].asDouble();
-    float minAvg = chartData[0]["average"].asDouble();
+    QVector<string>time;
+    setupLineChart();
 
     //Reads in data from json(historical data 1 day delayed)
-    for(int i = 0 ; i < n; i++)
+    for(int i = 0 ; i < chartData.size(); i++)
     {
-            value.push_back(chartData[i]["average"].asDouble());
-            time[i] = chartData[i]["date"].asString();
 
-            //timeInEpoch.push_back(QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch());
+        if(chartData[i]["average"].asDouble() == 0 && i != chartData.size()-1)
+        {
+            chartData[i]["average"] = chartData[i-1]["average"];
+        }
+
+        QCPGraphData data;
+        data.key = i;
+        data.value = chartData[i]["average"].asDouble();
+        datas.add(data);
+
+        time.push_back(chartData[i]["date"].asString());
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
 
 
-            if((value[i] == 0) && (i != n - 1))
-            {
-                value[i] = value[i-1];
-            }
 
-            if(value[i] > maxAvg)
-            {
-                maxAvg = value[i];
-            }
-
-            else if(value[i] < minAvg)
-            {
-                minAvg = value[i];
-            }
     }
 
-    stockData(value[n-1], value[n-2]);
+    stockData(chartData[chartData.size()-1]["average"].asDouble(), chartData[chartData.size()-2]["average"].asDouble());
 
     //Assigns data to graph
-    ui->stockGraph->graph(0)->setData(timeInEpoch, value);
+    ui->stockGraph->graph(0)->data()->set(datas);
 
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0], timeInEpoch[n-1]);
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
 
-    //Set y axis range
-    ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
+
     ui->stockGraph->replot();
 }
 
-//Fix x axis dates and tickers
+//Needs UI Work
 void MainWindow::h_oneMonth_Line_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "1mm");
+
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(8);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+
+    QCPDataContainer<QCPGraphData> datas;
+
     //Stores x and y values
-    QVector<double> value, timeInEpoch;
-    QVector<string>time(300);
-    setupLineChart("MMM d", 5);
-
-    int  n = chartData.size();
-
-    //Finds max and min for range
-    float maxAvg = chartData[0]["close"].asDouble();
-    float minAvg = chartData[0]["close"].asDouble();
+    QVector<string>time;
+    setupLineChart();
 
     //Reads in data from json(historical data 1 day delayed)
-    for(Json::Value::ArrayIndex i = 0 ; i < n; i++)
+    for(int i = 0 ; i < chartData.size(); i++)
     {
-            value.push_back(chartData[i]["close"].asDouble());
-            time[i] = chartData[i]["date"].asString();
-            timeInEpoch.push_back(QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch());
-            if((value[i] == 0) && (i != chartData.size() - 1))
-            {
-                value[i] = value[i-1];
-            }
 
-            if(value[i] > maxAvg)
-            {
-                maxAvg = value[i];
-            }
+        if(chartData[i]["average"].asDouble() == 0 && i != chartData.size()-1)
+        {
+            chartData[i]["average"] = chartData[i-1]["average"];
+        }
 
-            else if(value[i] < minAvg)
-            {
-                minAvg = value[i];
-            }
+        QCPGraphData data;
+        data.key = i;
+        data.value = chartData[i]["average"].asDouble();
+        datas.add(data);
+
+        time.push_back(chartData[i]["date"].asString());
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
+
+
+
     }
 
-    stockData(value[n-1], value[n-2]);
+    stockData(chartData[chartData.size()-1]["average"].asDouble(), chartData[chartData.size()-2]["average"].asDouble());
 
     //Assigns data to graph
-    ui->stockGraph->graph(0)->setData(timeInEpoch, value);
+    ui->stockGraph->graph(0)->data()->set(datas);
 
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0], timeInEpoch[n-1]);
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
 
-    //Set y axis range
-    ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
+
+    ui->stockGraph->replot();
     ui->stockGraph->replot();
 }
 
-//Fix x axis dates and tickers
+//Needs UI Work
 void MainWindow::h_sixMonth_Line_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "6m");
+
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(6);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+
+    QCPDataContainer<QCPGraphData> datas;
+
     //Stores x and y values
-    QVector<double> value, timeInEpoch;
-    QVector<string>time(183);
-    setupLineChart("MMM d", 8);
-
-    int  n = chartData.size();
-
-    //Finds max and min for range
-    float maxAvg = chartData[0]["close"].asDouble();
-    float minAvg = chartData[0]["close"].asDouble();
+    QVector<string>time;
+    setupLineChart();
 
     //Reads in data from json(historical data 1 day delayed)
-    for(Json::Value::ArrayIndex i = 0 ; i < n; i++)
+    for(int i = 0 ; i < chartData.size(); i++)
     {
-            value.push_back(chartData[i]["close"].asDouble());
-            time[i] = chartData[i]["date"].asString();
-            timeInEpoch.push_back(QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch());
-            if((value[i] == 0) && (i != chartData.size() - 1))
-            {
-                value[i] = value[i-1];
-            }
 
-            if(value[i] > maxAvg)
-            {
-                maxAvg = value[i];
-            }
+        if(chartData[i]["close"].asDouble() == 0 && i != chartData.size()-1)
+        {
+            chartData[i]["close"] = chartData[i-1]["close"];
+        }
 
-            else if(value[i] < minAvg)
-            {
-                minAvg = value[i];
-            }
+        QCPGraphData data;
+        data.key = i;
+        data.value = chartData[i]["close"].asDouble();
+        datas.add(data);
+
+        time.push_back(chartData[i]["date"].asString());
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
+
+
+
     }
 
-    stockData(value[n-1], value[n-2]);
+    stockData(chartData[chartData.size()-1]["close"].asDouble(), chartData[chartData.size()-2]["close"].asDouble());
 
     //Assigns data to graph
-    ui->stockGraph->graph(0)->setData(timeInEpoch, value);
+    ui->stockGraph->graph(0)->data()->set(datas);
 
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0], timeInEpoch[n-1]);
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
 
-    //Set y axis range
-    ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
+
     ui->stockGraph->replot();
 }
 
-//Fix x axis dates and tickers
+//Needs UI Work
 void MainWindow::h_oneYear_Line_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "1y");
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(12);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+
+    QCPDataContainer<QCPGraphData> datas;
+
     //Stores x and y values
-    QVector<double> value, timeInEpoch;
-    QVector<string>time(365);
-    setupLineChart("MMM d", 8);
-
-    int  n = chartData.size();
-
-    //Finds max and min for range
-    float maxAvg = chartData[0]["close"].asDouble();
-    float minAvg = chartData[0]["close"].asDouble();
+    QVector<string>time;
+    setupLineChart();
 
     //Reads in data from json(historical data 1 day delayed)
-    for(Json::Value::ArrayIndex i = 0 ; i < n; i++)
+    for(int i = 0 ; i < chartData.size(); i++)
     {
-            value.push_back(chartData[i]["close"].asDouble());
-            time[i] = chartData[i]["date"].asString();
-            timeInEpoch.push_back(QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch());
-            if((value[i] == 0) && (i != chartData.size() - 1))
-            {
-                value[i] = value[i-1];
-            }
 
-            if(value[i] > maxAvg)
-            {
-                maxAvg = value[i];
-            }
+        if(chartData[i]["close"].asDouble() == 0 && i != chartData.size()-1)
+        {
+            chartData[i]["close"] = chartData[i-1]["close"];
+        }
 
-            else if(value[i] < minAvg)
-            {
-                minAvg = value[i];
-            }
+        QCPGraphData data;
+        data.key = i;
+        data.value = chartData[i]["close"].asDouble();
+        datas.add(data);
+
+        time.push_back(chartData[i]["date"].asString());
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
+
+
+
     }
 
-    stockData(value[n-1], value[n-2]);
+    stockData(chartData[chartData.size()-1]["close"].asDouble(), chartData[chartData.size()-2]["close"].asDouble());
 
     //Assigns data to graph
-    ui->stockGraph->graph(0)->setData(timeInEpoch, value);
+    ui->stockGraph->graph(0)->data()->set(datas);
 
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0], timeInEpoch[n-1]);
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
 
-    //Set y axis range
-    ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
     ui->stockGraph->replot();
 }
 
-//Completed
+//Needs UI Work
 void MainWindow::h_ytd_Line_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartYtd(symbolSearchedStd);
 
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(6);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+
+    QCPDataContainer<QCPGraphData> datas;
+
     //Stores x and y values
-    QVector<double> value(365), timeInEpoch(365);
-    QVector<string>time(365);
-    setupLineChart("MMM d, \nyyyy", 8);
-
-    int  n = chartData.size();
-
-    //Finds max and min for range
-    float maxAvg = chartData[0]["close"].asDouble();
-    float minAvg = chartData[0]["close"].asDouble();
+    QVector<string>time;
+    setupLineChart();
 
     //Reads in data from json(historical data 1 day delayed)
-    for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
+    for(int i = 0 ; i < chartData.size(); i++)
     {
-        if(chartData[i].isMember("close"))
+
+        if(chartData[i]["close"].asDouble() == 0 && i != chartData.size()-1)
         {
-            value[i] = (chartData[i]["close"].asDouble());
-            time[i] = chartData[i]["date"].asString();
-            timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
-            if((value[i] == 0) && (i != chartData.size() - 1))
-            {
-                value[i] = value[i-1];
-            }
-
-            if(value[i] > maxAvg)
-            {
-                maxAvg = value[i];
-            }
-
-            else if(value[i] < minAvg)
-            {
-                minAvg = value[i];
-            }
+            chartData[i]["close"] = chartData[i-1]["close"];
         }
+
+        QCPGraphData data;
+        data.key = i;
+        data.value = chartData[i]["close"].asDouble();
+        datas.add(data);
+
+        time.push_back(chartData[i]["date"].asString());
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
+
+
+
     }
 
-    stockData(value[n-1], value[n-2]);
+    stockData(chartData[chartData.size()-1]["close"].asDouble(), chartData[chartData.size()-2]["close"].asDouble());
 
     //Assigns data to graph
-    ui->stockGraph->graph(0)->setData(timeInEpoch, value);
+    ui->stockGraph->graph(0)->data()->set(datas);
 
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0], timeInEpoch[n-1]);
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
 
-    //Set y axis range
-    QCPRange yAxis(minAvg + 2, maxAvg + 2);
-    yAxis.normalize();
-    yAxis.center();
-    ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
     ui->stockGraph->replot();
 
 
@@ -898,7 +878,7 @@ void MainWindow::h_ytd_Line_Graph()
 
 
             //CANDLESTICK CHARTS
-            //Real Time Charting
+            //Real Time Charting(Incomplete)
 void MainWindow::rt_oneDay_Candle_Graph()
 {
 
@@ -928,91 +908,154 @@ void MainWindow::rt_oneYear_Candle_Graph()
 
 
             //Historical Charting
-
+//Needs work
 void MainWindow::h_oneDay_Candle_Graph()
 {
+    //Retrieves json format of data
+    Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "1d");
 
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(13);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+    QCPDataContainer<QCPFinancialData> datas;
+
+    //Stores x and y values
+    QVector<double> timeDatas;
+    QVector<string>time(chartData.size());
+
+    for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
+    {
+        timeDatas.append(i);
+        QCPFinancialData data;
+        data.key = i;
+        data.open = chartData[i]["open"].asDouble();
+        data.close = chartData[i]["close"].asDouble();
+        data.low = chartData[i]["low"].asDouble();
+        data.high = chartData[i]["high"].asDouble();
+        datas.add(data);
+        time[i] = chartData[i]["minute"].asString();
+
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
+    }
+    cout << "test" << endl;
+
+    //stockData(value[n-1], value[n-2]);
+
+    // create candlestick chart:
+    candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
+    candlesticks->setName("Candlestick");
+    candlesticks->data()->set(datas);
+    //candlesticks->setWidth(binSize*0.9);
+    candlesticks->setTwoColored(true);
+    candlesticks->setBrushPositive(QColor(0,128,0));
+    candlesticks->setBrushNegative(QColor(255,0,0));
+    candlesticks->setPenPositive(QPen(QColor(0, 0, 0)));
+    candlesticks->setPenNegative(QPen(QColor(0, 0, 0)));
+
+    //Creates X Axis on bottom
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
+    ui->stockGraph->xAxis->setSubTicks(false);
+    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
+    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
+    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
+
+    //Creates Y Axis on right side
+    ui->stockGraph->yAxis->setVisible(false);
+    ui->stockGraph->yAxis2->setVisible(true);
+    ui->stockGraph->yAxis2->setSubTicks(false);
+    ui->stockGraph->yAxis2->setBasePen(QPen(Qt::white, 1));
+    ui->stockGraph->yAxis2->setTickPen(QPen(Qt::white, 1));
+    ui->stockGraph->yAxis2->setTickLabelColor(Qt::white);
+    ui->stockGraph->yAxis2->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+    ui->stockGraph->yAxis2->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+    ui->stockGraph->yAxis2->grid()->setSubGridVisible(true);
+    ui->stockGraph->yAxis2->grid()->setZeroLinePen(Qt::NoPen);
+    ui->stockGraph->yAxis2->grid()->setVisible(true);
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
+
+    //Creates Background
+    QLinearGradient plotGradient;
+    plotGradient.setStart(0, 0);
+    plotGradient.setFinalStop(0, 350);
+    plotGradient.setColorAt(0, QColor(80, 80, 80));
+    plotGradient.setColorAt(1, QColor(50, 50, 50));
+    ui->stockGraph->setBackground(plotGradient);
+
+    //Creates Axis Rectangle and color
+    QLinearGradient axisRectGradient;
+    axisRectGradient.setStart(0, 0);
+    axisRectGradient.setFinalStop(0, 350);
+    axisRectGradient.setColorAt(0, QColor(80, 80, 80));
+    axisRectGradient.setColorAt(1, QColor(39, 39, 39));
+    ui->stockGraph->axisRect()->setBackground(axisRectGradient);
+    ui->stockGraph->replot();
 }
 
-//Needs a lot of work still
+//Needs UI Work
 void MainWindow::h_oneWeek_Candle_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "5dm");
 
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(4);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+    QCPDataContainer<QCPFinancialData> datas;
+
     //Stores x and y values
-    QVector<double> highPrice(365), lowPrice(365), openPrice(365), value(365), timeInEpoch(365);
+    QVector<double> timeDatas;
     QVector<string>time(365);
-
-    int  n = chartData.size();
-    double binSize = 3600*24;
-
-    float maxAvg = chartData[0]["high"].asDouble();
-    float minAvg = chartData[0]["low"].asDouble();
 
     for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
     {
-        if(chartData[i].isMember("high"))
-        {
-            highPrice[i] = (chartData[i]["high"].asDouble());
+        timeDatas.append(i);
 
-            if((highPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                highPrice[i] = highPrice[i-1];
-            }
-
-            if(highPrice[i] > maxAvg)
-            {
-                maxAvg = highPrice[i];
-            }
-        }
-
-        if(chartData[i].isMember("low"))
-        {
-            lowPrice[i] = (chartData[i]["low"].asDouble());
-
-            if((lowPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                lowPrice[i] = lowPrice[i-1];
-            }
-
-            if(lowPrice[i] < minAvg)
-            {
-                minAvg = lowPrice[i];
-            }
-        }
-
-        if(chartData[i].isMember("open"))
-        {
-            openPrice[i] = (chartData[i]["open"].asDouble());
-
-            if((openPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                openPrice[i] = openPrice[i-1];
-            }
-        }
-
-        if(chartData[i].isMember("close"))
-        {
-            value[i] = (chartData[i]["close"].asDouble());
-
-            if((value[i] == 0) && (i != chartData.size() - 1))
-            {
-                value[i] = value[i-1];
-            }
-        }
-
+        QCPFinancialData data;
+        data.key = i;
+        data.open = chartData[i]["open"].asDouble();
+        data.close = chartData[i]["close"].asDouble();
+        data.low = chartData[i]["low"].asDouble();
+        data.high = chartData[i]["high"].asDouble();
+        datas.add(data);
         time[i] = chartData[i]["date"].asString();
-        QString temp = QString::fromStdString(time[i]);
-        timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
-    }
 
-    stockData(value[n-1], value[n-2]);
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
+    }
+    //stockData(value[n-1], value[n-2]);
+
+    // create candlestick chart:
+    candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
+    candlesticks->setName("Candlestick");
+    candlesticks->data()->set(datas);
+    //candlesticks->setWidth(binSize*0.9);
+    candlesticks->setTwoColored(true);
+    candlesticks->setBrushPositive(QColor(0,128,0));
+    candlesticks->setBrushNegative(QColor(255,0,0));
+    candlesticks->setPenPositive(QPen(QColor(0, 0, 0)));
+    candlesticks->setPenNegative(QPen(QColor(0, 0, 0)));
+
+    //Creates X Axis on bottom
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
+    ui->stockGraph->xAxis->setSubTicks(false);
+    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
+    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
+    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
 
     //Creates Y Axis on right side
-    QSharedPointer<QCPAxisTicker> valueTicker(new QCPAxisTicker);
-    valueTicker->setTickCount(10);
-    ui->stockGraph->yAxis2->setTicker(valueTicker);
     ui->stockGraph->yAxis->setVisible(false);
     ui->stockGraph->yAxis2->setVisible(true);
     ui->stockGraph->yAxis2->setSubTicks(false);
@@ -1024,36 +1067,7 @@ void MainWindow::h_oneWeek_Candle_Graph()
     ui->stockGraph->yAxis2->grid()->setSubGridVisible(true);
     ui->stockGraph->yAxis2->grid()->setZeroLinePen(Qt::NoPen);
     ui->stockGraph->yAxis2->grid()->setVisible(true);
-
-
-    //Creates X Axis on bottom
-    QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
-    dateTicker->setDateTimeFormat("MMM d, \nyyyy");
-    dateTicker->setDateTimeSpec(Qt::UTC);
-    dateTicker->setTickCount(6);
-    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
-    ui->stockGraph->xAxis->setTicker(dateTicker);
-    ui->stockGraph->xAxis->setSubTicks(false);
-    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
-    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
-    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
-    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
-    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
-    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
-    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
-
-
-    // create candlestick chart:
-    candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
-    candlesticks->setName("Candlestick");
-    candlesticks->setChartStyle(QCPFinancial::csCandlestick);
-    candlesticks->setData(timeInEpoch, openPrice, highPrice, lowPrice, value, false);
-    candlesticks->setWidth(binSize*0.9);
-    candlesticks->setTwoColored(true);
-    candlesticks->setBrushPositive(QColor(0,128,0));
-    candlesticks->setBrushNegative(QColor(255,0,0));
-    candlesticks->setPenPositive(QPen(QColor(0, 0, 0)));
-    candlesticks->setPenNegative(QPen(QColor(0, 0, 0)));
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
 
     //Creates Background
     QLinearGradient plotGradient;
@@ -1070,94 +1084,68 @@ void MainWindow::h_oneWeek_Candle_Graph()
     axisRectGradient.setColorAt(0, QColor(80, 80, 80));
     axisRectGradient.setColorAt(1, QColor(39, 39, 39));
     ui->stockGraph->axisRect()->setBackground(axisRectGradient);
-
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0] - 200000, timeInEpoch[n-1] + 400000);
-
-    //Set y axis range
-    ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
     ui->stockGraph->replot();
+
 }
 
-//Needs a lot of work still
+//Needs UI Work
 void MainWindow::h_oneMonth_Candle_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "1mm");
 
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(9);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+    QCPDataContainer<QCPFinancialData> datas;
+
     //Stores x and y values
-    QVector<double> highPrice(365), lowPrice(365), openPrice(365), value(365), timeInEpoch(365);
+    QVector<double> timeDatas;
     QVector<string>time(365);
-
-    int  n = chartData.size();
-    double binSize = 3600*24;
-
-    float maxAvg = chartData[0]["high"].asDouble();
-    float minAvg = chartData[0]["low"].asDouble();
 
     for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
     {
-        if(chartData[i].isMember("high"))
-        {
-            highPrice[i] = (chartData[i]["high"].asDouble());
+        timeDatas.append(i);
 
-            if((highPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                highPrice[i] = highPrice[i-1];
-            }
-
-            if(highPrice[i] > maxAvg)
-            {
-                maxAvg = highPrice[i];
-            }
-        }
-
-        if(chartData[i].isMember("low"))
-        {
-            lowPrice[i] = (chartData[i]["low"].asDouble());
-
-            if((lowPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                lowPrice[i] = lowPrice[i-1];
-            }
-
-            if(lowPrice[i] < minAvg)
-            {
-                minAvg = lowPrice[i];
-            }
-        }
-
-        if(chartData[i].isMember("open"))
-        {
-            openPrice[i] = (chartData[i]["open"].asDouble());
-
-            if((openPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                openPrice[i] = openPrice[i-1];
-            }
-        }
-
-        if(chartData[i].isMember("close"))
-        {
-            value[i] = (chartData[i]["close"].asDouble());
-
-            if((value[i] == 0) && (i != chartData.size() - 1))
-            {
-                value[i] = value[i-1];
-            }
-        }
-
+        QCPFinancialData data;
+        data.key = i;
+        data.open = chartData[i]["open"].asDouble();
+        data.close = chartData[i]["close"].asDouble();
+        data.low = chartData[i]["low"].asDouble();
+        data.high = chartData[i]["high"].asDouble();
+        datas.add(data);
         time[i] = chartData[i]["date"].asString();
-        QString temp = QString::fromStdString(time[i]);
-        timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
-    }
 
-    stockData(value[n-1], value[n-2]);
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
+    }
+    //stockData(value[n-1], value[n-2]);
+
+    // create candlestick chart:
+    candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
+    candlesticks->setName("Candlestick");
+    candlesticks->data()->set(datas);
+    //candlesticks->setWidth(binSize*0.9);
+    candlesticks->setTwoColored(true);
+    candlesticks->setBrushPositive(QColor(0,128,0));
+    candlesticks->setBrushNegative(QColor(255,0,0));
+    candlesticks->setPenPositive(QPen(QColor(0, 0, 0)));
+    candlesticks->setPenNegative(QPen(QColor(0, 0, 0)));
+
+    //Creates X Axis on bottom
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
+    ui->stockGraph->xAxis->setSubTicks(false);
+    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
+    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
+    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
 
     //Creates Y Axis on right side
-    QSharedPointer<QCPAxisTicker> valueTicker(new QCPAxisTicker);
-    valueTicker->setTickCount(10);
-    ui->stockGraph->yAxis2->setTicker(valueTicker);
     ui->stockGraph->yAxis->setVisible(false);
     ui->stockGraph->yAxis2->setVisible(true);
     ui->stockGraph->yAxis2->setSubTicks(false);
@@ -1169,36 +1157,7 @@ void MainWindow::h_oneMonth_Candle_Graph()
     ui->stockGraph->yAxis2->grid()->setSubGridVisible(true);
     ui->stockGraph->yAxis2->grid()->setZeroLinePen(Qt::NoPen);
     ui->stockGraph->yAxis2->grid()->setVisible(true);
-
-
-    //Creates X Axis on bottom
-    QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
-    dateTicker->setDateTimeFormat("MMM d, \nyyyy");
-    dateTicker->setDateTimeSpec(Qt::UTC);
-    dateTicker->setTickCount(6);
-    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
-    ui->stockGraph->xAxis->setTicker(dateTicker);
-    ui->stockGraph->xAxis->setSubTicks(false);
-    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
-    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
-    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
-    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
-    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
-    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
-    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
-
-
-    // create candlestick chart:
-    candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
-    candlesticks->setName("Candlestick");
-    candlesticks->setChartStyle(QCPFinancial::csCandlestick);
-    candlesticks->setData(timeInEpoch, openPrice, highPrice, lowPrice, value, false);
-    candlesticks->setWidth(binSize*0.9);
-    candlesticks->setTwoColored(true);
-    candlesticks->setBrushPositive(QColor(0,128,0));
-    candlesticks->setBrushNegative(QColor(255,0,0));
-    candlesticks->setPenPositive(QPen(QColor(0, 0, 0)));
-    candlesticks->setPenNegative(QPen(QColor(0, 0, 0)));
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
 
     //Creates Background
     QLinearGradient plotGradient;
@@ -1215,95 +1174,68 @@ void MainWindow::h_oneMonth_Candle_Graph()
     axisRectGradient.setColorAt(0, QColor(80, 80, 80));
     axisRectGradient.setColorAt(1, QColor(39, 39, 39));
     ui->stockGraph->axisRect()->setBackground(axisRectGradient);
-
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0] - 200000, timeInEpoch[n-1] + 400000);
-
-    //Set y axis range
-    ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
     ui->stockGraph->replot();
 }
 
-//Working but not lookng to par
+//Needs UI Work
 void MainWindow::h_sixMonth_Candle_Graph()
 {
 
         //Retrieves json format of data
         Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "6m");
 
+        QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+        dateTicker->setTickCount(6);
+        dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+        QCPDataContainer<QCPFinancialData> datas;
+
         //Stores x and y values
-        QVector<double> highPrice(365), lowPrice(365), openPrice(365), value(365), timeInEpoch(365);
+        QVector<double> timeDatas;
         QVector<string>time(365);
-
-        int  n = chartData.size();
-        double binSize = 3600*24;
-
-        float maxAvg = chartData[0]["high"].asDouble();
-        float minAvg = chartData[0]["low"].asDouble();
 
         for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
         {
-            if(chartData[i].isMember("high"))
-            {
-                highPrice[i] = (chartData[i]["high"].asDouble());
+            timeDatas.append(i);
 
-                if((highPrice[i] == 0) && (i != chartData.size() - 1))
-                {
-                    highPrice[i] = highPrice[i-1];
-                }
-
-                if(highPrice[i] > maxAvg)
-                {
-                    maxAvg = highPrice[i];
-                }
-            }
-
-            if(chartData[i].isMember("low"))
-            {
-                lowPrice[i] = (chartData[i]["low"].asDouble());
-
-                if((lowPrice[i] == 0) && (i != chartData.size() - 1))
-                {
-                    lowPrice[i] = lowPrice[i-1];
-                }
-
-                if(lowPrice[i] < minAvg)
-                {
-                    minAvg = lowPrice[i];
-                }
-            }
-
-            if(chartData[i].isMember("open"))
-            {
-                openPrice[i] = (chartData[i]["open"].asDouble());
-
-                if((openPrice[i] == 0) && (i != chartData.size() - 1))
-                {
-                    openPrice[i] = openPrice[i-1];
-                }
-            }
-
-            if(chartData[i].isMember("close"))
-            {
-                value[i] = (chartData[i]["close"].asDouble());
-
-                if((value[i] == 0) && (i != chartData.size() - 1))
-                {
-                    value[i] = value[i-1];
-                }
-            }
-
+            QCPFinancialData data;
+            data.key = i;
+            data.open = chartData[i]["open"].asDouble();
+            data.close = chartData[i]["close"].asDouble();
+            data.low = chartData[i]["low"].asDouble();
+            data.high = chartData[i]["high"].asDouble();
+            datas.add(data);
             time[i] = chartData[i]["date"].asString();
-            QString temp = QString::fromStdString(time[i]);
-            timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
-        }
 
-        stockData(value[n-1], value[n-2]);
+
+            dateTicker->addTick(i, QString::fromStdString(time[i]));
+        }
+        //stockData(value[n-1], value[n-2]);
+
+        // create candlestick chart:
+        candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
+        candlesticks->setName("Candlestick");
+        candlesticks->data()->set(datas);
+        //candlesticks->setWidth(binSize*0.9);
+        candlesticks->setTwoColored(true);
+        candlesticks->setBrushPositive(QColor(0,128,0));
+        candlesticks->setBrushNegative(QColor(255,0,0));
+        candlesticks->setPenPositive(QPen(QColor(0, 0, 0)));
+        candlesticks->setPenNegative(QPen(QColor(0, 0, 0)));
+
+        //Creates X Axis on bottom
+        ui->stockGraph->xAxis->setTicker(dateTicker);
+        ui->stockGraph->rescaleAxes();
+        ui->stockGraph->xAxis->setSubTicks(false);
+        ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
+        ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
+        ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
+        ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+        ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+        ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
+        ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
+        ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
 
         //Creates Y Axis on right side
-        QSharedPointer<QCPAxisTicker> valueTicker(new QCPAxisTicker);
-        valueTicker->setTickCount(10);
-        ui->stockGraph->yAxis2->setTicker(valueTicker);
         ui->stockGraph->yAxis->setVisible(false);
         ui->stockGraph->yAxis2->setVisible(true);
         ui->stockGraph->yAxis2->setSubTicks(false);
@@ -1315,36 +1247,7 @@ void MainWindow::h_sixMonth_Candle_Graph()
         ui->stockGraph->yAxis2->grid()->setSubGridVisible(true);
         ui->stockGraph->yAxis2->grid()->setZeroLinePen(Qt::NoPen);
         ui->stockGraph->yAxis2->grid()->setVisible(true);
-
-
-        //Creates X Axis on bottom
-        QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
-        dateTicker->setDateTimeFormat("MMM d, \nyyyy");
-        dateTicker->setDateTimeSpec(Qt::UTC);
-        dateTicker->setTickCount(6);
-        dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
-        ui->stockGraph->xAxis->setTicker(dateTicker);
-        ui->stockGraph->xAxis->setSubTicks(false);
-        ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
-        ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
-        ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
-        ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
-        ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
-        ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
-        ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
-
-
-        // create candlestick chart:
-        candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
-        candlesticks->setName("Candlestick");
-        candlesticks->setChartStyle(QCPFinancial::csCandlestick);
-        candlesticks->setData(timeInEpoch, openPrice, highPrice, lowPrice, value, false);
-        candlesticks->setWidth(binSize*0.9);
-        candlesticks->setTwoColored(true);
-        candlesticks->setBrushPositive(QColor(0,128,0));
-        candlesticks->setBrushNegative(QColor(255,0,0));
-        candlesticks->setPenPositive(QPen(QColor(0, 0, 0)));
-        candlesticks->setPenNegative(QPen(QColor(0, 0, 0)));
+        ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
 
         //Creates Background
         QLinearGradient plotGradient;
@@ -1361,107 +1264,68 @@ void MainWindow::h_sixMonth_Candle_Graph()
         axisRectGradient.setColorAt(0, QColor(80, 80, 80));
         axisRectGradient.setColorAt(1, QColor(39, 39, 39));
         ui->stockGraph->axisRect()->setBackground(axisRectGradient);
-
-        //Set x axis range
-        ui->stockGraph->xAxis->setRange(timeInEpoch[0] - 200000, timeInEpoch[n-1] + 400000);
-
-        //Set y axis range
-        ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
         ui->stockGraph->replot();
 
 }
 
-//Working but not lookng to par
+//Needs UI Work
 void MainWindow::h_oneYear_Candle_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartRange(symbolSearchedStd, "1y");
 
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(12);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+    QCPDataContainer<QCPFinancialData> datas;
+
     //Stores x and y values
-    QVector<double> highPrice(365), lowPrice(365), openPrice(365), value(365), timeInEpoch(365);
+    QVector<double> timeDatas;
     QVector<string>time(365);
-
-    int  n = chartData.size();
-    double binSize = 3600*24;
-
-    float maxAvg = chartData[0]["high"].asDouble();
-    float minAvg = chartData[0]["low"].asDouble();
 
     for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
     {
-        if(chartData[i].isMember("high"))
-        {
-            highPrice[i] = (chartData[i]["high"].asDouble());
+        timeDatas.append(i);
 
-            if((highPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                highPrice[i] = highPrice[i-1];
-            }
-
-            if(highPrice[i] > maxAvg)
-            {
-                maxAvg = highPrice[i];
-            }
-        }
-
-        if(chartData[i].isMember("low"))
-        {
-            lowPrice[i] = (chartData[i]["low"].asDouble());
-
-            if((lowPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                lowPrice[i] = lowPrice[i-1];
-            }
-
-            if(lowPrice[i] < minAvg)
-            {
-                minAvg = lowPrice[i];
-            }
-        }
-
-        if(chartData[i].isMember("open"))
-        {
-            openPrice[i] = (chartData[i]["open"].asDouble());
-
-            if((openPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                openPrice[i] = openPrice[i-1];
-            }
-        }
-
-        if(chartData[i].isMember("close"))
-        {
-            value[i] = (chartData[i]["close"].asDouble());
-
-            if((value[i] == 0) && (i != chartData.size() - 1))
-            {
-                value[i] = value[i-1];
-            }
-        }
-
+        QCPFinancialData data;
+        data.key = i;
+        data.open = chartData[i]["open"].asDouble();
+        data.close = chartData[i]["close"].asDouble();
+        data.low = chartData[i]["low"].asDouble();
+        data.high = chartData[i]["high"].asDouble();
+        datas.add(data);
         time[i] = chartData[i]["date"].asString();
-        QString temp = QString::fromStdString(time[i]);
-        timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
-    }
 
-    stockData(value[n-1], value[n-2]);
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
+    }
+    //stockData(value[n-1], value[n-2]);
 
     // create candlestick chart:
     candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
     candlesticks->setName("Candlestick");
-    candlesticks->setChartStyle(QCPFinancial::csCandlestick);
-    candlesticks->setData(timeInEpoch, openPrice, highPrice, lowPrice, value, false);
-    candlesticks->setWidth(binSize*0.9);
+    candlesticks->data()->set(datas);
+    //candlesticks->setWidth(binSize*0.9);
     candlesticks->setTwoColored(true);
     candlesticks->setBrushPositive(QColor(0,128,0));
     candlesticks->setBrushNegative(QColor(255,0,0));
     candlesticks->setPenPositive(QPen(QColor(0, 0, 0)));
     candlesticks->setPenNegative(QPen(QColor(0, 0, 0)));
 
+    //Creates X Axis on bottom
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
+    ui->stockGraph->xAxis->setSubTicks(false);
+    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
+    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
+    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
+
     //Creates Y Axis on right side
-    QSharedPointer<QCPAxisTicker> valueTicker(new QCPAxisTicker);
-    valueTicker->setTickCount(8);
-    ui->stockGraph->yAxis2->setTicker(valueTicker);
     ui->stockGraph->yAxis->setVisible(false);
     ui->stockGraph->yAxis2->setVisible(true);
     ui->stockGraph->yAxis2->setSubTicks(false);
@@ -1473,25 +1337,7 @@ void MainWindow::h_oneYear_Candle_Graph()
     ui->stockGraph->yAxis2->grid()->setSubGridVisible(true);
     ui->stockGraph->yAxis2->grid()->setZeroLinePen(Qt::NoPen);
     ui->stockGraph->yAxis2->grid()->setVisible(true);
-
-
-    //Creates X Axis on bottom
-    QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
-    dateTicker->setDateTimeFormat("MMM d, \nyyyy");
-    dateTicker->setDateTimeSpec(Qt::UTC);
-    dateTicker->setTickCount(10);
-    ui->stockGraph->xAxis->setTicker(dateTicker);
-    ui->stockGraph->xAxis->setSubTicks(false);
-    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
-    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
-    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
-    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
-    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
-    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
-    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
-
-    //Rescale Axis
-    ui->stockGraph->rescaleAxes();
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
 
     //Creates Background
     QLinearGradient plotGradient;
@@ -1508,109 +1354,67 @@ void MainWindow::h_oneYear_Candle_Graph()
     axisRectGradient.setColorAt(0, QColor(80, 80, 80));
     axisRectGradient.setColorAt(1, QColor(39, 39, 39));
     ui->stockGraph->axisRect()->setBackground(axisRectGradient);
-
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0] - 160000, timeInEpoch[n-1] + 300000);
-
-    //Set y axis range
-    QCPRange yAxis(minAvg + 2, maxAvg + 2);
-    yAxis.normalize();
-    yAxis.center();
-    ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
     ui->stockGraph->replot();
 }
 
-//Completed
+//Needs UI Work
 void MainWindow::h_ytd_Candle_Graph()
 {
     //Retrieves json format of data
     Json::Value chartData = IEX::stocks::chartYtd(symbolSearchedStd);
 
+    QSharedPointer<QCPAxisTickerText> dateTicker(new MyAxisTickerText);
+    dateTicker->setTickCount(6);
+    dateTicker->setTickStepStrategy(QCPAxisTicker::tssMeetTickCount);
+    QCPDataContainer<QCPFinancialData> datas;
+
     //Stores x and y values
-    QVector<double> highPrice(365), lowPrice(365), openPrice(365), value(365), timeInEpoch(365);
+    QVector<double> timeDatas;
     QVector<string>time(365);
-
-    int  n = chartData.size();
-    double binSize = 3600*24;
-
-    float maxAvg = chartData[0]["high"].asDouble();
-    float minAvg = chartData[0]["low"].asDouble();
 
     for(Json::Value::ArrayIndex i = 0 ; i != chartData.size(); i++)
     {
-        if(chartData[i].isMember("high"))
-        {
-            highPrice[i] = (chartData[i]["high"].asDouble());
+        timeDatas.append(i);
 
-            if((highPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                highPrice[i] = highPrice[i-1];
-            }
-
-            if(highPrice[i] > maxAvg)
-            {
-                maxAvg = highPrice[i];
-            }
-        }
-
-        if(chartData[i].isMember("low"))
-        {
-            lowPrice[i] = (chartData[i]["low"].asDouble());
-
-            if((lowPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                lowPrice[i] = lowPrice[i-1];
-            }
-
-            if(lowPrice[i] < minAvg)
-            {
-                minAvg = lowPrice[i];
-            }
-        }
-
-        if(chartData[i].isMember("open"))
-        {
-            openPrice[i] = (chartData[i]["open"].asDouble());
-
-            if((openPrice[i] == 0) && (i != chartData.size() - 1))
-            {
-                openPrice[i] = openPrice[i-1];
-            }
-        }
-
-        if(chartData[i].isMember("close"))
-        {
-            value[i] = (chartData[i]["close"].asDouble());
-
-            if((value[i] == 0) && (i != chartData.size() - 1))
-            {
-                value[i] = value[i-1];
-            }
-        }
-
+        QCPFinancialData data;
+        data.key = i;
+        data.open = chartData[i]["open"].asDouble();
+        data.close = chartData[i]["close"].asDouble();
+        data.low = chartData[i]["low"].asDouble();
+        data.high = chartData[i]["high"].asDouble();
+        datas.add(data);
         time[i] = chartData[i]["date"].asString();
-        QString temp = QString::fromStdString(time[i]);
-        timeInEpoch[i] = QDateTime::fromString(time[i].c_str(), Qt::ISODate).toSecsSinceEpoch();
-    }
 
-    stockData(value[n-1], value[n-2]);
+
+        dateTicker->addTick(i, QString::fromStdString(time[i]));
+    }
+    //stockData(value[n-1], value[n-2]);
 
     // create candlestick chart:
     candlesticks = new QCPFinancial(ui->stockGraph->xAxis, ui->stockGraph->yAxis2);
     candlesticks->setName("Candlestick");
-    candlesticks->setChartStyle(QCPFinancial::csCandlestick);
-    candlesticks->setData(timeInEpoch, openPrice, highPrice, lowPrice, value, false);
-    candlesticks->setWidth(binSize*0.9);
+    candlesticks->data()->set(datas);
+    //candlesticks->setWidth(binSize*0.9);
     candlesticks->setTwoColored(true);
     candlesticks->setBrushPositive(QColor(0,128,0));
     candlesticks->setBrushNegative(QColor(255,0,0));
     candlesticks->setPenPositive(QPen(QColor(0, 0, 0)));
     candlesticks->setPenNegative(QPen(QColor(0, 0, 0)));
 
+    //Creates X Axis on bottom
+    ui->stockGraph->xAxis->setTicker(dateTicker);
+    ui->stockGraph->rescaleAxes();
+    ui->stockGraph->xAxis->setSubTicks(false);
+    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
+    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
+    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
+    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
+    ui->stockGraph->xAxis->scaleRange(1.03, ui->stockGraph->xAxis->range().center());
+
     //Creates Y Axis on right side
-    QSharedPointer<QCPAxisTicker> valueTicker(new QCPAxisTicker);
-    valueTicker->setTickCount(10);
-    ui->stockGraph->yAxis2->setTicker(valueTicker);
     ui->stockGraph->yAxis->setVisible(false);
     ui->stockGraph->yAxis2->setVisible(true);
     ui->stockGraph->yAxis2->setSubTicks(false);
@@ -1622,25 +1426,7 @@ void MainWindow::h_ytd_Candle_Graph()
     ui->stockGraph->yAxis2->grid()->setSubGridVisible(true);
     ui->stockGraph->yAxis2->grid()->setZeroLinePen(Qt::NoPen);
     ui->stockGraph->yAxis2->grid()->setVisible(true);
-
-
-    //Creates X Axis on bottom
-    QSharedPointer<QCPAxisTickerDateTime> dateTicker(new QCPAxisTickerDateTime);
-    dateTicker->setDateTimeFormat("MMM d, \nyyyy");
-    dateTicker->setDateTimeSpec(Qt::UTC);
-    dateTicker->setTickCount(12);
-    ui->stockGraph->xAxis->setTicker(dateTicker);
-    ui->stockGraph->xAxis->setSubTicks(false);
-    ui->stockGraph->xAxis->setBasePen(QPen(Qt::white, 1));
-    ui->stockGraph->xAxis->setTickPen(QPen(Qt::white, 1));
-    ui->stockGraph->xAxis->setTickLabelColor(Qt::white);
-    ui->stockGraph->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
-    ui->stockGraph->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
-    ui->stockGraph->xAxis->grid()->setSubGridVisible(true);
-    ui->stockGraph->xAxis->grid()->setZeroLinePen(Qt::NoPen);
-
-    //Rescale Axis
-    ui->stockGraph->rescaleAxes();
+    ui->stockGraph->yAxis2->scaleRange(1.05, ui->stockGraph->yAxis2->range().center());
 
     //Creates Background
     QLinearGradient plotGradient;
@@ -1657,15 +1443,6 @@ void MainWindow::h_ytd_Candle_Graph()
     axisRectGradient.setColorAt(0, QColor(80, 80, 80));
     axisRectGradient.setColorAt(1, QColor(39, 39, 39));
     ui->stockGraph->axisRect()->setBackground(axisRectGradient);
-
-    //Set x axis range
-    ui->stockGraph->xAxis->setRange(timeInEpoch[0] - 86400, timeInEpoch[n-1] + 86400);
-
-    //Set y axis range
-    QCPRange yAxis(minAvg + 2, maxAvg + 2);
-    yAxis.normalize();
-    yAxis.center();
-    ui->stockGraph->yAxis2->setRange(minAvg - 10, maxAvg + 10);
     ui->stockGraph->replot();
 
 }
